@@ -1,8 +1,9 @@
-import {Box, Divider, Grid, Stack, Typography, useTheme} from "@mui/material";
+import {Box, Collapse, Divider, Grid, Stack, Typography, useTheme} from "@mui/material";
 import CircleOutlinedIcon from '@mui/icons-material/CircleOutlined';
 import SearchOutlinedIcon from '@mui/icons-material/SearchOutlined';
 import Image from "next/image";
 import Link from "next/link";
+import {useState} from "react";
 
 
 const HeaderLinks = [
@@ -32,6 +33,8 @@ const HeaderLinks = [
 export default function Header() {
     const theme = useTheme();
 
+    const [openMenu, setOpenMenu] = useState(false);
+
     return (
         <>
             <Stack direction={"row"}
@@ -51,7 +54,7 @@ export default function Header() {
 
             <Grid container justifyContent={"center"} alignItems={"center"}>
                 <Grid item xs={12} sm={10} md={8} lg={6} xl={4}>
-                    <Box display={"flex"}
+                    <Box display={{xs: "none", sm: "flex"}}
                          alignItems={"center"}
                          justifyContent={"space-between"}
                          paddingTop={"1rem"}
@@ -68,9 +71,44 @@ export default function Header() {
                             </Link>
                         ))}
                     </Box>
+
+                    <Box display={{xs: "block", sm: "none"}}>
+                        <Typography variant={"h6"}
+                                    color={theme.palette.primary.main}
+                                    sx={{cursor: "pointer"}}
+                                    textAlign={"center"}
+                                    paddingTop={"1rem"}
+                                    paddingBottom={"1rem"}
+                                    width={"100%"}
+                                    onClick={() => setOpenMenu(!openMenu)}>
+                            Izbornik
+                        </Typography>
+                    </Box>
+                    <Collapse in={openMenu}>
+                        <Divider />
+                        <Box display={{xs: "flex", sm: "none"}}
+                             alignItems={"center"}
+                             flexDirection={"column"}
+                             justifyContent={"space-between"}
+                             paddingTop={"1rem"}
+                             paddingBottom={"1rem"}>
+                            {HeaderLinks.map((link) => (
+                                <Link href={link.href}
+                                      key={link.name}
+                                      style={{textDecoration: "none"}}>
+                                    <Typography variant={"h6"}
+                                                color={theme.palette.primary.main}
+                                                sx={{cursor: "pointer"}}
+                                                paddingY={"0.5rem"}>
+                                        {link.name}
+                                    </Typography>
+                                </Link>
+                            ))}
+                        </Box>
+                    </Collapse>
+
                 </Grid>
             </Grid>
-
             <Divider />
         </>
 
