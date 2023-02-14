@@ -46,7 +46,9 @@ export default function Header() {
                    paddingTop={"1rem"}
                    paddingBottom={"1rem"}>
                 <CircleOutlinedIcon/>
-                <Image src={"/ssfer-logo-light.png"} alt={"SSFER logo"} width={100} height={100} />
+                <Link href={"/"}>
+                    <Image src={"/ssfer-logo-light.png"} alt={"SSFER logo"} width={100} height={100} />
+                </Link>
                 <SearchOutlinedIcon/>
             </Stack>
 

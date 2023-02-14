@@ -26,6 +26,7 @@ export default function SekcijeGrid({sx}: {sx?: SxProps<Theme>}) {
                         </Box>
                         <Typography variant={"h6"}
                                     color={"primary"}
+                                    textAlign={"center"}
                                     sx={{fontWeight: "bold",
                                         textDecoration: "underline"}}>
                             Comp sekcija
@@ -48,6 +49,7 @@ export default function SekcijeGrid({sx}: {sx?: SxProps<Theme>}) {
                         </Box>
                         <Typography variant={"h6"}
                                     color={"primary"}
+                                    textAlign={"center"}
                                     sx={{fontWeight: "bold",
                                         textDecoration: "underline"}}>
                             Comp sekcija
@@ -70,6 +72,7 @@ export default function SekcijeGrid({sx}: {sx?: SxProps<Theme>}) {
                         </Box>
                         <Typography variant={"h6"}
                                     color={"primary"}
+                                    textAlign={"center"}
                                     sx={{fontWeight: "bold",
                                         textDecoration: "underline"}}>
                             Comp sekcija
@@ -92,6 +95,7 @@ export default function SekcijeGrid({sx}: {sx?: SxProps<Theme>}) {
                         </Box>
                         <Typography variant={"h6"}
                                     color={"primary"}
+                                    textAlign={"center"}
                                     sx={{fontWeight: "bold",
                                         textDecoration: "underline"}}>
                             Comp sekcija
@@ -114,6 +118,7 @@ export default function SekcijeGrid({sx}: {sx?: SxProps<Theme>}) {
                         </Box>
                         <Typography variant={"h6"}
                                     color={"primary"}
+                                    textAlign={"center"}
                                     sx={{fontWeight: "bold",
                                         textDecoration: "underline"}}>
                             Comp sekcija
