@@ -88,9 +88,9 @@ export default function Footer() {
                                    paddingY={"1.5rem"}
                                    spacing={2}>
                                 <Box position={"relative"} height={"80px"} width={"100%"}>
-                                    <Image src={"/kset-logo-light.svg"} alt={"KSET Logo"} fill={true}/>
+                                    <Image src={"/company-logos/kset-logo-light.svg"} alt={"KSET Logo"} fill={true}/>
                                 </Box>
-                                <Typography variant={"h6"}
+                                <Typography variant={"body1"}
                                             color={theme.palette.primary.light}
                                             textAlign={"center"}
                                             fontWeight={300}>
@@ -106,9 +106,9 @@ export default function Footer() {
                                    position={"relative"}
                                    spacing={2}>
                                 <Box position={"relative"} height={"75px"} width={"100%"}>
-                                    <Image src={"/fer-logo-light.svg"} alt={"FER Logo"} fill={true}/>
+                                    <Image src={"/company-logos/fer-logo-light.svg"} alt={"FER Logo"} fill={true}/>
                                 </Box>
-                                <Typography variant={"h6"}
+                                <Typography variant={"body1"}
                                             color={theme.palette.primary.light}
                                             textAlign={"center"}
                                             fontWeight={300}>
@@ -123,9 +123,9 @@ export default function Footer() {
                                    paddingY={"1.5rem"}
                                    spacing={2}>
                                 <Box position={"relative"} height={"91px"} width={"100%"}>
-                                    <Image src={"/A1-logo-light.svg"} alt={"A1 Logo"} fill={true}/>
+                                    <Image src={"/company-logos/A1-logo-light.svg"} alt={"A1 Logo"} fill={true}/>
                                 </Box>
-                                <Typography variant={"h6"}
+                                <Typography variant={"body1"}
                                             color={theme.palette.primary.light}
                                             textAlign={"center"}
                                             fontWeight={300}>
