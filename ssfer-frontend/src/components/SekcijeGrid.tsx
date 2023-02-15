@@ -10,7 +10,7 @@ export default function SekcijeGrid({sx}: {sx?: SxProps<Theme>}) {
             <Grid container
                   justifyContent={"start"}
                   alignItems={"center"}
-                  rowGap={"4rem"}>
+                  rowGap={"3rem"}>
                 <Grid item xs={6} md={4}>
                     <Stack direction={"column"}
                            justifyContent={"center"}
@@ -18,7 +18,7 @@ export default function SekcijeGrid({sx}: {sx?: SxProps<Theme>}) {
                            spacing={2}
                            sx={{m: "0.5rem"}}>
                         <Box sx={{position: "relative",
-                                  height: {xs: "160px", sm: "250px", md: "330px"},
+                                  height: {xs: "calc(100vw/2 - 2rem)", sm: "calc(100vw/3 - 2rem)", md: "calc(100vw/5 - 2rem)"},
                                   width: "100%"}}>
                             <Link href={"/sekcije/comp"}>
                                 <Image src={"/sekcije/Comp.svg"} alt={"Comp sekcija"} fill={true} />
@@ -29,7 +29,7 @@ export default function SekcijeGrid({sx}: {sx?: SxProps<Theme>}) {
                                     textAlign={"center"}
                                     sx={{fontWeight: "bold",
                                         textDecoration: "underline"}}>
-                            Comp sekcija
+                            Comp seksija
                         </Typography>
                     </Stack>
                 </Grid>
@@ -41,7 +41,7 @@ export default function SekcijeGrid({sx}: {sx?: SxProps<Theme>}) {
                            spacing={2}
                            sx={{m: "0.5rem"}}>
                         <Box sx={{position: "relative",
-                            height: {xs: "160px", sm: "250px", md: "330px"},
+                            height: {xs: "calc(100vw/2 - 2rem)", sm: "calc(100vw/3 - 2rem)", md: "calc(100vw/5 - 2rem)"},
                             width: "100%"}}>
                             <Link href={"/sekcije/comp"}>
                                 <Image src={"/sekcije/Comp.svg"} alt={"Comp sekcija"} fill={true} />
@@ -52,7 +52,7 @@ export default function SekcijeGrid({sx}: {sx?: SxProps<Theme>}) {
                                     textAlign={"center"}
                                     sx={{fontWeight: "bold",
                                         textDecoration: "underline"}}>
-                            Comp sekcija
+                            Comp seksija
                         </Typography>
                     </Stack>
                 </Grid>
@@ -64,7 +64,7 @@ export default function SekcijeGrid({sx}: {sx?: SxProps<Theme>}) {
                            spacing={2}
                            sx={{m: "0.5rem"}}>
                         <Box sx={{position: "relative",
-                            height: {xs: "160px", sm: "250px", md: "330px"},
+                            height: {xs: "calc(100vw/2 - 2rem)", sm: "calc(100vw/3 - 2rem)", md: "calc(100vw/5 - 2rem)"},
                             width: "100%"}}>
                             <Link href={"/sekcije/comp"}>
                                 <Image src={"/sekcije/Comp.svg"} alt={"Comp sekcija"} fill={true} />
@@ -75,53 +75,7 @@ export default function SekcijeGrid({sx}: {sx?: SxProps<Theme>}) {
                                     textAlign={"center"}
                                     sx={{fontWeight: "bold",
                                         textDecoration: "underline"}}>
-                            Comp sekcija
-                        </Typography>
-                    </Stack>
-                </Grid>
-
-                <Grid item xs={6} md={4}>
-                    <Stack direction={"column"}
-                           justifyContent={"center"}
-                           alignItems={"center"}
-                           spacing={2}
-                           sx={{m: "0.5rem"}}>
-                        <Box sx={{position: "relative",
-                            height: {xs: "160px", sm: "250px", md: "330px"},
-                            width: "100%"}}>
-                            <Link href={"/sekcije/comp"}>
-                                <Image src={"/sekcije/Comp.svg"} alt={"Comp sekcija"} fill={true} />
-                            </Link>
-                        </Box>
-                        <Typography variant={"h6"}
-                                    color={"primary"}
-                                    textAlign={"center"}
-                                    sx={{fontWeight: "bold",
-                                        textDecoration: "underline"}}>
-                            Comp sekcija
-                        </Typography>
-                    </Stack>
-                </Grid>
-
-                <Grid item xs={6} md={4}>
-                    <Stack direction={"column"}
-                           justifyContent={"center"}
-                           alignItems={"center"}
-                           spacing={2}
-                           sx={{m: "0.5rem"}}>
-                        <Box sx={{position: "relative",
-                            height: {xs: "160px", sm: "250px", md: "330px"},
-                            width: "100%"}}>
-                            <Link href={"/sekcije/comp"}>
-                                <Image src={"/sekcije/Comp.svg"} alt={"Comp sekcija"} fill={true} />
-                            </Link>
-                        </Box>
-                        <Typography variant={"h6"}
-                                    color={"primary"}
-                                    textAlign={"center"}
-                                    sx={{fontWeight: "bold",
-                                        textDecoration: "underline"}}>
-                            Comp sekcija
+                            Comp seksija
                         </Typography>
                     </Stack>
                 </Grid>

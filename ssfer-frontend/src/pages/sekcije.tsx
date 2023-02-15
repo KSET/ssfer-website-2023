@@ -9,7 +9,7 @@ export default function Sekcije() {
 
     return (
         <>
-            <Header />
+            <Header selectedLink={"Sekcije"} />
 
             <Box sx={{mx: "2rem", mt: "2rem", mb: "8rem"}}>
 

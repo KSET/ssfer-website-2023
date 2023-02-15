@@ -2,6 +2,7 @@ import {Box, Divider, Grid, Stack, Typography, useTheme} from "@mui/material";
 import {RoundedButton} from "@/components/RoundedButton";
 import SingleInputWithRoundButton from "@/components/SingleInputWithRoundButton";
 import Image from "next/image";
+import Link from "next/link";
 
 
 export default function Footer() {
@@ -165,14 +166,15 @@ export default function Footer() {
                             fontWeight={300}>
                     © Sva prava pridržana.
                 </Typography>
-
-                <Typography variant={"body2"}
-                            color={theme.palette.primary.light}
-                            textAlign={"center"}
-                            paddingY={"0.5rem"}
-                            fontWeight={300}>
-                    Politika privatnosti
-                </Typography>
+                <Link href={"/politika-privatnosti"}>
+                    <Typography variant={"body2"}
+                                color={theme.palette.primary.light}
+                                textAlign={"center"}
+                                paddingY={"0.5rem"}
+                                fontWeight={300}>
+                        Politika privatnosti
+                    </Typography>
+                </Link>
             </Box>
         </Stack>
     )

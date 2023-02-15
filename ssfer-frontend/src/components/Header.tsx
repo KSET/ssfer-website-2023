@@ -30,13 +30,13 @@ const HeaderLinks = [
 ]
 
 
-export default function Header() {
+export default function Header({selectedLink}: {selectedLink?: string}) {
     const theme = useTheme();
 
     const [openMenu, setOpenMenu] = useState(false);
 
     return (
-        <>
+        <Box>
             <Stack direction={"row"}
                    spacing={2}
                    alignItems={"center"}
@@ -47,7 +47,7 @@ export default function Header() {
                    paddingBottom={"1rem"}>
                 <CircleOutlinedIcon/>
                 <Link href={"/"}>
-                    <Image src={"/ssfer-logo-light.png"} alt={"SSFER logo"} width={100} height={100} />
+                    <Image src={"/company-logos/ssfer-logo-light.png"} alt={"SSFER logo"} width={100} height={100} />
                 </Link>
                 <SearchOutlinedIcon/>
             </Stack>
@@ -67,7 +67,8 @@ export default function Header() {
                                   style={{textDecoration: "none"}}>
                                 <Typography variant={"h6"}
                                             color={theme.palette.primary.main}
-                                            sx={{cursor: "pointer"}}>
+                                            sx={{cursor: "pointer",
+                                                 fontWeight: selectedLink === link.name ? "bold" : "normal"}}>
                                     {link.name}
                                 </Typography>
                             </Link>
@@ -100,7 +101,8 @@ export default function Header() {
                                       style={{textDecoration: "none"}}>
                                     <Typography variant={"h6"}
                                                 color={theme.palette.primary.main}
-                                                sx={{cursor: "pointer"}}
+                                                sx={{cursor: "pointer",
+                                                    fontWeight: selectedLink === link.name ? "bold" : "normal"}}
                                                 paddingY={"0.5rem"}>
                                         {link.name}
                                     </Typography>
@@ -112,7 +114,7 @@ export default function Header() {
                 </Grid>
             </Grid>
             <Divider />
-        </>
+        </Box>
 
 
     )
