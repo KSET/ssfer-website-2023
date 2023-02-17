@@ -6,15 +6,18 @@ import {Box, Typography} from "@mui/material";
 export default function PolitikaPrivatnosti() {
 
     return (
-        <>
+        <Box minHeight={"100vh"}>
             <Header />
 
             <Box sx={{mx: "2rem", mt: "2rem", mb: "8rem"}}>
-                <Typography variant={"h4"} color={"primary"} sx={{fontWeight: "bold"}}>
+                <Typography variant={"h4"}
+                            color={"primary"}
+                            sx={{fontWeight: "bold"}}>
                     Politika privatnosti
                 </Typography>
 
-                <Typography variant={"body1"} sx={{mt: "2rem"}}>
+                <Typography variant={"body1"}
+                            sx={{mt: "2rem"}}>
                     Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus nunc urna, porttitor ut justo a, efficitur semper lectus. Duis vitae purus elementum, sollicitudin lectus aliquam, mollis lectus. Donec consequat neque metus, ut bibendum libero dictum et. Maecenas urna lectus, dapibus non tincidunt sed, efficitur sit amet sapien. Aenean et ex mollis odio semper auctor sit amet id dolor. Ut fringilla mi vitae felis maximus, eu semper libero varius. Quisque vitae lacus ac turpis tristique sollicitudin. Pellentesque sapien tellus, blandit id dapibus efficitur, varius at ipsum. Integer vitae vehicula diam, quis hendrerit purus. In congue, purus quis semper pharetra, leo augue tincidunt turpis, non gravida lorem enim vitae lorem. Maecenas ornare odio ac ligula maximus feugiat. Sed non diam id diam aliquet condimentum. Nunc ut odio quis turpis mollis cursus a porta ex. Integer fringilla lobortis odio at sagittis. Suspendisse facilisis, nisl sed viverra pretium, est neque gravida felis, eget bibendum libero ligula vitae eros. Integer in felis vel augue eleifend egestas et mollis ligula.
                     <br />
                     <br />
@@ -33,6 +36,6 @@ export default function PolitikaPrivatnosti() {
 
 
             <Footer />
-        </>
+        </Box>
     )
 }

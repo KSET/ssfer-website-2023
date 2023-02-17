@@ -1,9 +1,11 @@
-import {Box, Collapse, Divider, Grid, Stack, Typography, useTheme} from "@mui/material";
-import CircleOutlinedIcon from '@mui/icons-material/CircleOutlined';
+import {Box, Collapse, Divider, Grid, IconButton, Stack, Typography, useTheme} from "@mui/material";
+import Brightness4Icon from '@mui/icons-material/Brightness4';
+import Brightness7Icon from '@mui/icons-material/Brightness7';
 import SearchOutlinedIcon from '@mui/icons-material/SearchOutlined';
 import Image from "next/image";
 import Link from "next/link";
-import {useState} from "react";
+import {useContext, useState} from "react";
+import {ColorModeContext} from "@/contexts/ColorModeContext";
 
 
 const HeaderLinks = [
@@ -32,6 +34,7 @@ const HeaderLinks = [
 
 export default function Header({selectedLink}: {selectedLink?: string}) {
     const theme = useTheme();
+    const colorMode = useContext(ColorModeContext);
 
     const [openMenu, setOpenMenu] = useState(false);
 
@@ -45,7 +48,12 @@ export default function Header({selectedLink}: {selectedLink?: string}) {
                    marginRight={"1rem"}
                    paddingTop={"1rem"}
                    paddingBottom={"1rem"}>
-                <CircleOutlinedIcon/>
+                <IconButton onClick={() => colorMode.toggleColorMode()}>
+                    {theme.palette.mode === "light" ?
+                        <Brightness4Icon color={"primary"}/> :
+                        <Brightness7Icon  color={"primary"}/>}
+                </IconButton>
+
                 <Link href={"/"}>
                     <Image src={"/company-logos/ssfer-logo-light.png"} alt={"SSFER logo"} width={100} height={100} />
                 </Link>

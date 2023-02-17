@@ -7,7 +7,7 @@ import DokumentiGrid from "@/components/DokumentiGrid";
 export default function Dokumenti() {
 
     return (
-        <>
+        <Box minHeight={"100vh"}>
             <Header selectedLink={"Dokumenti"} />
 
             <Box sx={{mx: "2rem", mt: "2rem", mb: "8rem"}}>
@@ -27,6 +27,6 @@ export default function Dokumenti() {
             </Box>
 
             <Footer />
-        </>
+        </Box>
     )
 }

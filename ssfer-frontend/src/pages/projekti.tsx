@@ -1,6 +1,7 @@
 import Header from "@/components/Header";
 import {Box, Typography} from "@mui/material";
 import ProjektiList from "@/components/ProjektiList";
+import Footer from "@/components/Footer";
 
 
 export default function Projekti() {
@@ -23,6 +24,8 @@ export default function Projekti() {
 
                 <ProjektiList sx={{mt: "3rem"}} />
             </Box>
+
+            <Footer />
         </>
     )
 }

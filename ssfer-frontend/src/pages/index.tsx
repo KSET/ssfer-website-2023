@@ -6,11 +6,15 @@ import Image from "next/image";
 import SekcijeGrid from "@/components/SekcijeGrid";
 import ProjektiList from "@/components/ProjektiList";
 import {RoundedButton} from "@/components/RoundedButton";
+import {DEFAULT_ASPECT_RATIO, DEFAULT_IMAGE_HEIGHT_RATIO} from "@/constants/ImageConstants";
 
+
+const DEFAULT_IMAGE_HEIGHT_LG = 60 * DEFAULT_IMAGE_HEIGHT_RATIO;
+const DEFAULT_IMAGE_HEIGHT_MD = 45 * DEFAULT_IMAGE_HEIGHT_RATIO;
 
 export default function Home() {
     return (
-        <>
+        <Box minHeight={"100vh"}>
             <Header/>
 
             <SectionHeader title={"O nama"}
@@ -21,9 +25,8 @@ export default function Home() {
                 projektima po kojima smo poznati. Više o njima možeš vidjeti ispod klikom na fotografiju projekta ili
                 njegovo ime.
             </Typography>
-            <Box sx={{mx: {xs: "2rem", md: "6rem", lg: "12rem"},
-                      position: "relative",
-                      height: {xs: "250px", sm: "350px", md: "620px"},
+            <Box sx={{position: "relative",
+                height: {xs: "calc((100vw - 2rem) / ("+ DEFAULT_ASPECT_RATIO + "))",  md: DEFAULT_IMAGE_HEIGHT_MD + "px", lg: DEFAULT_IMAGE_HEIGHT_LG + "px"},
                       mt: "2rem"}}>
                 <Image src={"/index-cover-image.png"}
                        alt={"Cover image"}
@@ -65,6 +68,6 @@ export default function Home() {
             </Box>
 
             <Footer />
-        </>
+        </Box>
     )
 }

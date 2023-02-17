@@ -8,7 +8,8 @@ export default function Error404Page() {
     return (
         <Box display={"flex"}
              justifyContent={"space-between"}
-             flexDirection={"column"}>
+             flexDirection={"column"}
+             minHeight={"100vh"}>
             <Header />
             <Stack
                  justifyContent={"center"}

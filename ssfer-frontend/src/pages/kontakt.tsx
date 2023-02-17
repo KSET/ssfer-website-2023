@@ -83,23 +83,29 @@ const VODITELJI = [
 export default function Kontakt() {
 
     return (
-        <>
+        <Box minHeight={"100vh"}>
             <Header selectedLink={"Kontakt"} />
 
             <Box sx={{mx: "2rem", mt: "2rem", mb: "8rem"}}>
-                <Typography variant={"h4"} sx={{fontWeight: "bold", mt: "2rem"}}>
+                <Typography variant={"h4"}
+                            sx={{fontWeight: "bold", mt: "2rem"}}>
                     Kontakt
                 </Typography>
 
-                <Typography variant={"h5"} sx={{fontWeight: "bold", mt: "2rem"}}>
+                <Typography variant={"h5"}
+                            sx={{fontWeight: "bold", mt: "2rem"}}>
                     Osnovne informacije
                 </Typography>
 
-                <Grid container rowSpacing={"0.5rem"} sx={{mt: "1rem"}} alignItems={"center"}>
+                <Grid container
+                      rowSpacing={"0.5rem"}
+                      sx={{mt: "1rem"}}
+                      alignItems={"center"}>
                     {OSNOVNE_INFORMACIJE.map((info) => (
                         <React.Fragment key={info.key}>
                             <Grid item xs={12} md={3} lg={2}>
-                                <Typography variant={"body1"} sx={{fontWeight: {xs: "bold", md: "normal"}}}>
+                                <Typography variant={"body1"}
+                                            sx={{fontWeight: {xs: "bold", md: "normal"}}}>
                                     {info.key}
                                 </Typography>
                             </Grid>
@@ -112,15 +118,21 @@ export default function Kontakt() {
                     ))}
                 </Grid>
 
-                <Typography variant={"h5"} sx={{fontWeight: "bold", mt: "2rem"}}>
+                <Typography variant={"h5"}
+                            sx={{fontWeight: "bold",
+                                 mt: "2rem"}}>
                     Kontakt adresa
                 </Typography>
 
-                <Grid container rowSpacing={"0.5rem"} sx={{mt: "1rem"}} alignItems={"center"}>
+                <Grid container
+                      rowSpacing={"0.5rem"}
+                      sx={{mt: "1rem"}}
+                      alignItems={"center"}>
                     {KONTAKT_ADRESA.map((info) => (
                         <React.Fragment key={info.key}>
                             <Grid item xs={12} md={3} lg={2}>
-                                <Typography variant={"body1"} sx={{fontWeight: {xs: "bold", md: "normal"}}}>
+                                <Typography variant={"body1"}
+                                            sx={{fontWeight: {xs: "bold", md: "normal"}}}>
                                     {info.key}
                                 </Typography>
                             </Grid>
@@ -133,15 +145,20 @@ export default function Kontakt() {
                     ))}
                 </Grid>
 
-                <Typography variant={"h5"} sx={{fontWeight: "bold", mt: "2rem"}}>
+                <Typography variant={"h5"}
+                            sx={{fontWeight: "bold", mt: "2rem"}}>
                     Voditelji
                 </Typography>
 
-                <Grid container rowSpacing={"0.5rem"} sx={{mt: "1rem"}} alignItems={"center"}>
+                <Grid container
+                      rowSpacing={"0.5rem"}
+                      sx={{mt: "1rem"}}
+                      alignItems={"center"}>
                     {VODITELJI.map((info) => (
                         <React.Fragment key={info.key}>
                             <Grid item xs={12} md={3} lg={2}>
-                                <Typography variant={"body1"} sx={{fontWeight: {xs: "bold", md: "normal"}}}>
+                                <Typography variant={"body1"}
+                                            sx={{fontWeight: {xs: "bold", md: "normal"}}}>
                                     {info.key}
                                 </Typography>
                             </Grid>
@@ -162,6 +179,6 @@ export default function Kontakt() {
             </Box>
 
             <Footer />
-        </>
+        </Box>
     )
 }

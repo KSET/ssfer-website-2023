@@ -7,7 +7,7 @@ import PartneriGrid from "@/components/PartneriGrid";
 export default function Partneri() {
 
     return (
-        <>
+        <Box minHeight={"100vh"}>
             <Header selectedLink={"Partneri"} />
 
             <Box sx={{mx: "2rem", mt: "2rem", mb: "8rem"}}>
@@ -21,10 +21,10 @@ export default function Partneri() {
                     Čime se oni bave saznaj klikom na njihov logotip.
                 </Typography>
 
-                <PartneriGrid sx={{mt: "2rem"}} />
+                <PartneriGrid roundedFields={false} sx={{mt: "2rem"}} />
             </Box>
 
             <Footer />
-        </>
+        </Box>
     )
 }
