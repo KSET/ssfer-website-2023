@@ -20,7 +20,7 @@ export default function Error404Page() {
                 <Typography variant={"h1"}
                             color={"primary"}
                             sx={{fontWeight: "700", fontSize: {xs: "96px",  lg: "296px"}}}>
-                    ...OPA
+                    ...OPA!
                 </Typography>
                 <Typography variant={"h2"}
                             color={"primary"}

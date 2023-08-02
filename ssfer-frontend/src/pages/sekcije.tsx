@@ -1,7 +1,7 @@
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import {Box, Typography, useTheme} from "@mui/material";
-import SekcijeGrid from "@/components/SekcijeGrid";
+import SekcijeGrid from "@/components/sekcije/SekcijeGrid";
 
 
 export default function Sekcije() {

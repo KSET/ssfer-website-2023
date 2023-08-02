@@ -27,8 +27,9 @@ const DEFAULT_SOCIALS: SocialNetwork[] = [
 ]
 
 const IMAGE_HEIGHT_MD = 45 * DEFAULT_IMAGE_HEIGHT_RATIO;
-const IMAGE_HEIGHT_LG = 60 * DEFAULT_IMAGE_HEIGHT_RATIO;
+const IMAGE_HEIGHT_LG = 80 * DEFAULT_IMAGE_HEIGHT_RATIO;
 
+// TODO: Staviti veliku sliku kao cover image (prati figmu)
 
 export default function ProjectDetails() {
     const router = useRouter();
@@ -57,7 +58,7 @@ export default function ProjectDetails() {
                     putovanja biciklima diljem zemlje.
                 </Typography>
 
-                <Typography variant={"h5"} sx={{mt: "2rem", fontWeight: "bold"}}>
+                <Typography variant={"h5"} sx={{mt: "3rem", fontWeight: "bold"}}>
                     Suorganizatori
                 </Typography>
 

@@ -3,7 +3,7 @@ import Footer from "@/components/Footer";
 import {Box, Typography} from "@mui/material";
 import SectionHeader from "@/components/SectionHeader";
 import Image from "next/image";
-import SekcijeGrid from "@/components/SekcijeGrid";
+import SekcijeGrid from "@/components/sekcije/SekcijeGrid";
 import ProjektiList from "@/components/ProjektiList";
 import {RoundedButton} from "@/components/RoundedButton";
 import {DEFAULT_ASPECT_RATIO, DEFAULT_IMAGE_HEIGHT_RATIO} from "@/constants/ImageConstants";

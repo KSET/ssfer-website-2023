@@ -32,7 +32,7 @@ const DEFAULT_SOCIALS: SocialNetwork[] = [
 ]
 
 const IMAGE_HEIGHT_MD = 45 * DEFAULT_IMAGE_HEIGHT_RATIO;
-const IMAGE_HEIGHT_LG = 60 * DEFAULT_IMAGE_HEIGHT_RATIO;
+const IMAGE_HEIGHT_LG = 80 * DEFAULT_IMAGE_HEIGHT_RATIO;
 
 export default function Sekcija() {
     const router = useRouter();

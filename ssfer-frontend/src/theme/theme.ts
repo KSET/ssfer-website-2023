@@ -17,6 +17,7 @@ export const theme: Theme = createTheme({
         divider: "#C9C9C9",
     },
     typography: {
+        fontSize: 16,
         fontFamily: "Barlow, sans-serif",
         fontWeightLight: 200,
         fontWeightMedium: 400,
@@ -45,6 +46,7 @@ export const themeDark: Theme = createTheme({
         divider: "#C9C9C9",
     },
     typography: {
+        fontSize: 16,
         fontFamily: "Barlow, sans-serif",
         fontWeightLight: 200,
         fontWeightMedium: 400,
