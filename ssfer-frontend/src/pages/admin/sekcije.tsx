@@ -1,4 +1,3 @@
-import AdminHeader from "@/components/admin/AdminHeader";
 import {Box, useTheme} from "@mui/material";
 import {useState} from "react";
 import SekcijaCard from "@/components/sekcije/SekcijaCard";
@@ -6,6 +5,7 @@ import {SekcijaEnum} from "@/components/sekcije/SekcijaEnum";
 import dynamic from "next/dynamic";
 import EditableGrid from "@/components/EditableGrid/EditableGrid";
 import TitleWithPlus from "@/components/admin/TitleWithPlus";
+import AdminLayout from "@/components/admin/AdminLayout";
 
 const repeat = (n: number, f: (i: number) => any) => Array.from({length: n}, (_, i) => f(i));
 
@@ -34,16 +34,18 @@ export default function Sekcije() {
 
   return (
     <>
-      <AdminHeader/>
-      <Box m={"2rem"}>
-        <TitleWithPlus title={"Sekcije"} onAdd={() => {
-        }}/>
+      <AdminLayout>
+        <Box m={"2rem"}>
+          <TitleWithPlus title={"Sekcije"} onAdd={() => {
+          }}/>
 
-        <EditableGrid components={components} onEdit={() => {
-        }} onMove={moveComponent} gridBreakpoints={{lg: 3, xs: 2}}/>
+          <EditableGrid components={components} onEdit={() => {
+          }} onMove={moveComponent} gridBreakpoints={{xl: 3, lg: 4, md: 6, xs: 11}}/>
 
 
-      </Box>
+        </Box>
+      </AdminLayout>
+
     </>
   )
 }
