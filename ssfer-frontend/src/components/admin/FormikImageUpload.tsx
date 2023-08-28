@@ -18,7 +18,7 @@ export default function FormikImageUpload({label, name, accept, type, onChange}:
   const [file, setFile] = React.useState<File | undefined>(undefined);
 
   return (
-    <Stack direction={"row"} mt={"2rem"} gap={"1rem"}>
+    <Stack direction={{xs: "column", md: "row"}} mt={"2rem"} gap={"1rem"}>
       <Typography variant={"subtitle1"} color={"primary"} width={"200px"}>{label}</Typography>
       <input id={name} type={type ?? "file"} accept={accept ?? "images/*"} style={fileInputStyle}
              onChange={(event) => {

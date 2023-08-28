@@ -11,8 +11,9 @@ interface Props {
 
 export default function FormikLabelAndInput({label, name, type}: Props) {
   return (
-    <Stack display={"inline-flex"} gap={"2rem"} direction={"row"} justifyContent={"space-between"}
-           alignItems={"center"} minWidth={"600px"} mt={"1rem"}>
+    <Stack display={"inline-flex"} gap={{xs: "0.5rem", md: "2rem"}} direction={{xs: "column", md: "row"}}
+           justifyContent={"space-between"}
+           alignItems={"start"} maxWidth={"600px"} width={"100%"} mt={"1rem"}>
       <Typography variant={"subtitle1"} color={"primary"} width={"200px"}>{label}</Typography>
       <Field
         component={FormikTextInput}
