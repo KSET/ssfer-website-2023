@@ -3,6 +3,48 @@ import {Box, Collapse, Divider, Stack, Typography} from "@mui/material";
 import {ArrowRight} from "@mui/icons-material";
 
 
+interface IMenuItem {
+  title: string,
+  link: string,
+  children?: IMenuItem[]
+}
+
+const menuItems: IMenuItem[] = [
+  {
+    title: "Politika privatnosti",
+    link: "/politika-privatnosti"
+  },
+  {
+    title: "Naslovnica",
+    link: "/naslovnica"
+  },
+  {
+    title: "Korisnici",
+    link: "/korisnici"
+  },
+  {
+    title: "Sekcije",
+    link: "/sekcije"
+  },
+  {
+    title: "Projekti",
+    link: "/projekti"
+  },
+  {
+    title: "Partneri",
+    link: "/partneri"
+  },
+  {
+    title: "Dokumenti",
+    link: "/dokumenti"
+  },
+  {
+    title: "Kontakti",
+    link: "/kontakti"
+  }
+]
+
+
 export default function SideMenu({open, drawerWidth}: {
   open: boolean,
   drawerWidth: number | string
@@ -12,10 +54,13 @@ export default function SideMenu({open, drawerWidth}: {
     <Collapse in={open} orientation={"horizontal"} unmountOnExit>
       <Stack direction={"column"} divider={<Divider/>} width={{xs: "100vw", sm: drawerWidth}} height={"100%"}
              sx={{borderRight: "1px black solid", overflow: "auto"}}>
-        <SideMenuItem title={"Projekti"}/>
-        <SideMenuItem title={"Sekcije"}>
-          <SideMenuItem title={"Sekcija 1"}/>
-        </SideMenuItem>
+        {menuItems.map((item, index) => (
+          <SideMenuItem key={index} title={item.title}>
+            {item.children?.map((child, childIndex) => (
+              <SideMenuItem key={childIndex} title={child.title}/>
+            ))}
+          </SideMenuItem>
+        ))}
         <Divider/>
       </Stack>
     </Collapse>
@@ -31,12 +76,12 @@ const SideMenuItem = ({title, children}: { title: string, children?: ReactNode }
     <>
       <Stack py={"1rem"} pl={"2rem"} pr={"4rem"} width={"100%"} direction={"row"} alignItems={"center"}
              justifyContent={"space-between"} onClick={() => toggleOpen()}>
-        <Typography variant={"h6"} color={"primary"}>
+        <Typography variant={"subtitle1"} color={"primary"}>
           {title}
         </Typography>
         {children && (
           <ArrowRight sx={{
-            transform: open ? "rotate(-90deg)" : "rotate(90deg)",
+            transform: open ? "rotate(90deg)" : "rotate(0deg)",
             transition: "transform 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms"
           }}/>
         )}
