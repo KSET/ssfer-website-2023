@@ -1,6 +1,7 @@
 import React, {ReactNode, useState} from "react";
 import {Box, Collapse, Divider, Stack, Typography} from "@mui/material";
 import {ArrowRight} from "@mui/icons-material";
+import Link from "next/link";
 
 
 interface IMenuItem {
@@ -12,35 +13,35 @@ interface IMenuItem {
 const menuItems: IMenuItem[] = [
   {
     title: "Politika privatnosti",
-    link: "/politika-privatnosti"
+    link: "politika-privatnosti"
   },
   {
     title: "Naslovnica",
-    link: "/naslovnica"
+    link: "naslovnica"
   },
   {
     title: "Korisnici",
-    link: "/korisnici"
+    link: "dodavanje-korisnika"
   },
   {
     title: "Sekcije",
-    link: "/sekcije"
+    link: "sekcije"
   },
   {
     title: "Projekti",
-    link: "/projekti"
+    link: "projekti"
   },
   {
     title: "Partneri",
-    link: "/partneri"
+    link: "partneri"
   },
   {
     title: "Dokumenti",
-    link: "/dokumenti"
+    link: "dokumenti"
   },
   {
     title: "Kontakti",
-    link: "/kontakti"
+    link: "kontakti"
   }
 ]
 
@@ -55,9 +56,9 @@ export default function SideMenu({open, drawerWidth}: {
       <Stack direction={"column"} divider={<Divider/>} width={{xs: "100vw", sm: drawerWidth}} height={"100%"}
              sx={{borderRight: "1px black solid", overflow: "auto"}}>
         {menuItems.map((item, index) => (
-          <SideMenuItem key={index} title={item.title}>
+          <SideMenuItem key={index} title={item.title} pageUrl={item.link}>
             {item.children?.map((child, childIndex) => (
-              <SideMenuItem key={childIndex} title={child.title}/>
+              <SideMenuItem key={childIndex} title={child.title} pageUrl={child.link}/>
             ))}
           </SideMenuItem>
         ))}
@@ -67,25 +68,29 @@ export default function SideMenu({open, drawerWidth}: {
   )
 }
 
-const SideMenuItem = ({title, children}: { title: string, children?: ReactNode }) => {
+const SideMenuItem = ({title, pageUrl, children}: { title: string, pageUrl: string, children?: ReactNode }) => {
   const [open, setOpen] = useState(false);
 
   const toggleOpen = () => setOpen(!open);
 
   return (
     <>
-      <Stack py={"1rem"} pl={"2rem"} pr={"4rem"} width={"100%"} direction={"row"} alignItems={"center"}
-             justifyContent={"space-between"} onClick={() => toggleOpen()}>
-        <Typography variant={"subtitle1"} color={"primary"}>
-          {title}
-        </Typography>
-        {children && (
-          <ArrowRight sx={{
-            transform: open ? "rotate(90deg)" : "rotate(0deg)",
-            transition: "transform 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms"
-          }}/>
-        )}
-      </Stack>
+      <Link href={pageUrl}>
+        <Stack py={"1rem"} pl={"2rem"} pr={"4rem"} width={"100%"} direction={"row"} alignItems={"center"}
+               justifyContent={"space-between"} onClick={() => toggleOpen()}>
+          <Typography variant={"subtitle1"} color={"primary"}>
+
+            {title}
+
+          </Typography>
+          {children && (
+            <ArrowRight sx={{
+              transform: open ? "rotate(90deg)" : "rotate(0deg)",
+              transition: "transform 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms"
+            }}/>
+          )}
+        </Stack>
+      </Link>
       {children && (
         <Collapse in={open} timeout={"auto"} unmountOnExit>
           <>

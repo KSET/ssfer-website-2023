@@ -14,7 +14,7 @@ export default function StackImageWithText({imageUrl, imageAlt, text, sx}: {
       <Box sx={{
         position: "relative",
         height: "250px",
-        m: "1rem"
+        m: "1rem !important"
       }}>
         <Image src={imageUrl}
                alt={imageAlt}
