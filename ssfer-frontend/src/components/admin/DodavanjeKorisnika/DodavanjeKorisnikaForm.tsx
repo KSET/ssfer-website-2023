@@ -27,7 +27,6 @@ const DodavanjeKorisnikaForm = () => {
               <Button variant={"contained"} color={"primary"} onClick={submitForm} sx={{textTransform: "initial"}}>Dodaj
                 korisnika</Button>
               <Button variant={"outlined"} color={"primary"} sx={{marginLeft: "1rem"}}><DeleteIcon/></Button>
-
             </Stack>
           </Form>
         )}

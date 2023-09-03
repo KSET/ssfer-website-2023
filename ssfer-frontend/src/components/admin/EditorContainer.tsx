@@ -87,10 +87,11 @@ const MenuBar = ({editor}: { editor: Editor | null }) => {
 }
 
 interface Props {
+  initialContent?: string
   onChange: (content: string) => void
 }
 
-const EditorContainer = ({onChange}: Props) => {
+const EditorContainer = ({initialContent, onChange}: Props) => {
   const editor = useEditor({
     extensions: [
       Document,
@@ -102,15 +103,15 @@ const EditorContainer = ({onChange}: Props) => {
         types: ['heading', 'paragraph'],
       }),
     ],
-    content: loremIpsum,
+    content: initialContent ?? loremIpsum,
     autofocus: true,
     editable: true,
     injectCSS: true,
     onUpdate: ({editor}) => onChange(editor.getHTML())
   })
-  
+
   return (
-    <Box>
+    <Box width={"100%"}>
       <MenuBar editor={editor}/>
       <Box mt={"1rem"} mx={"2rem"}>
         <EditorContent editor={editor}/>

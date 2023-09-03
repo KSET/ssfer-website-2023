@@ -1,6 +1,6 @@
 import {FormikValues, useFormikContext} from "formik";
 import {FC, useCallback, useEffect} from "react";
-import {isEqual, omit} from "lodash";
+import {omit} from "lodash";
 
 
 interface AutoSaveProps {
@@ -9,15 +9,12 @@ interface AutoSaveProps {
 }
 
 const AutoSave: FC<AutoSaveProps> = ({delay = 300, onSubmit}) => {
-  const {values, errors, initialValues} = useFormikContext<FormikValues>();
-
-  const isSameValueAsInitialValue = useCallback(async (v: FormikValues) =>
-    isEqual(v, initialValues), [initialValues]);
+  const {values, errors} = useFormikContext<FormikValues>();
 
   const onFormSubmit = useCallback(async () => {
     const v: FormikValues = omit(values, Object.keys(errors));
-    if (onSubmit && !(await isSameValueAsInitialValue(v))) onSubmit(v);
-  }, [values, errors, onSubmit, isSameValueAsInitialValue]);
+    if (onSubmit) onSubmit(v);
+  }, [values, errors, onSubmit]);
 
   useEffect(() => {
     const timer = setTimeout(() => onFormSubmit(), delay);

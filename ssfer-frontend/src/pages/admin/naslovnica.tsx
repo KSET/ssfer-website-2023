@@ -80,11 +80,7 @@ export default function Naslovnica() {
                 <FormikLabelAndInput label={"O Nama"} name={"oNama"} type={"text"}/>
                 <FormikLabelAndInput label={"Sekcije Opis"} name={"sekcijeOpis"} type={"text"}/>
                 <FormikLabelAndInput label={"O Nama Naslov"} name={"onNameNaslov"} type={"text"}/>
-                <FormikImageUpload label={"Slika"} name={"slika"}
-                                   onChange={(event) => {
-                                     if (!event.currentTarget.files) return;
-                                     setFieldValue("slika", event.currentTarget.files[0]);
-                                   }}/>
+                <FormikImageUpload label={"Slika"} name={"slika"}/>
               </Stack>
               <AutoSave onSubmit={submitForm}/>
             </Form>

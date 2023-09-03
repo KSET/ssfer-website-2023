@@ -13,31 +13,31 @@ interface IMenuItem {
 const menuItems: IMenuItem[] = [
   {
     title: "Politika privatnosti",
-    link: "politika-privatnosti"
+    link: "/admin/politika-privatnosti"
   },
   {
     title: "Naslovnica",
-    link: "naslovnica"
+    link: "/admin/naslovnica"
   },
   {
     title: "Korisnici",
-    link: "dodavanje-korisnika"
+    link: "/admin/dodavanje-korisnika"
   },
   {
     title: "Sekcije",
-    link: "sekcije"
+    link: "/admin/sekcije"
   },
   {
     title: "Projekti",
-    link: "projekti"
+    link: "/admin/projekti"
   },
   {
     title: "Partneri",
-    link: "partneri"
+    link: "/admin/partneri"
   },
   {
     title: "Dokumenti",
-    link: "dokumenti"
+    link: "/admin/dokumenti"
   },
   {
     title: "Kontakti",

@@ -15,7 +15,7 @@ export default function AdminLayout({children}: { children: React.ReactNode }) {
 
   return (
     <Box height={"100vh"}>
-      <Stack height={"100%"}>
+      <Stack height={"100%"} width={"100%"} overflow={"hidden"}>
         <Stack direction={"row"} justifyContent={"space-between"} alignItems={"center"} my={"0.5rem"} mx={"1rem"}>
           <Typography variant={"h4"} color={"primary"} sx={{fontWeight: "bold"}}>
             SS FER Admin
@@ -31,7 +31,7 @@ export default function AdminLayout({children}: { children: React.ReactNode }) {
         </Stack>
         <Divider sx={{color: "black"}}/>
 
-        <Box display={"flex"} height={"100%"}>
+        <Box display={"flex"} height={"100%"} sx={{overflowY: "auto"}}>
           <SideMenu open={openMenu} drawerWidth={DRAWER_WIDTH}/>
           <Box width={{xs: openMenu ? 0 : "100%", sm: openMenu ? "calc(100% - " + DRAWER_WIDTH + "px)" : "100%"}}
                sx={{transition: "width 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms", overflow: "auto"}}>
