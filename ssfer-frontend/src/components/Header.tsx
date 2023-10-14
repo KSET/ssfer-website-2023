@@ -34,7 +34,7 @@ const HeaderLinks = [
 
 export default function Header({selectedLink}: {selectedLink?: string}) {
     const theme = useTheme();
-    const colorMode = useContext(ColorModeContext);
+    const {toggleColorMode} = useContext(ColorModeContext);
 
     const [openMenu, setOpenMenu] = useState(false);
 
@@ -48,7 +48,7 @@ export default function Header({selectedLink}: {selectedLink?: string}) {
                    marginRight={"1rem"}
                    paddingTop={"1rem"}
                    paddingBottom={"1rem"}>
-                <IconButton onClick={() => colorMode.toggleColorMode()}>
+                <IconButton onClick={() => toggleColorMode()}>
                     {theme.palette.mode === "light" ?
                         <Brightness4Icon color={"primary"}/> :
                         <Brightness7Icon  color={"primary"}/>}

@@ -3,7 +3,7 @@ import type { AppProps } from 'next/app'
 import {ThemeProvider} from "@mui/material/styles";
 import {theme, themeDark} from "@/theme/theme";
 import {Barlow} from "@next/font/google";
-import {CssBaseline, useMediaQuery} from "@mui/material";
+import {CssBaseline} from "@mui/material";
 import {useEffect, useMemo, useState} from "react";
 import {ColorModeContext} from "@/contexts/ColorModeContext";
 import {DndProvider} from "react-dnd";
@@ -17,18 +17,23 @@ const barlow = Barlow({
 
 
 export default function App({ Component, pageProps }: AppProps) {
-    const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)');
-    const [colorMode, setColorMode] = useState('light'); // prefersDarkMode ? 'dark' : 'light'
+    const [colorMode, setColorMode] = useState('light');
 
     const colorModeFunction = useMemo(() => ({
         toggleColorMode: () => {
             setColorMode((prevMode) => (prevMode === 'light' ? 'dark' : 'light'));
+            localStorage.setItem('colorMode', colorMode === 'light' ? 'dark' : 'light');
         }
-    }), [])
+    }), [colorMode])
 
     useEffect(() => {
-        setColorMode('light'); // prefersDarkMode ? 'dark' : 'light'
-    }, [prefersDarkMode])
+        const localColorMode = localStorage.getItem('colorMode');
+        if (localColorMode) {
+            setColorMode(localColorMode === "dark" ? "dark" : "light");
+        } else {
+            setColorMode('light');
+        }
+    }, []);
 
     return (
       <DndProvider backend={HTML5Backend}>
