@@ -20,14 +20,18 @@ export default function Partneri() {
     setComponents(newComponents);
   }
 
+  const onEdit = (index: number) => {
+    location.href = "uredivanje-partnera/" + index;
+  }
+
   return (
     <AdminLayout>
       <Box m={"2rem"}>
-        <TitleWithPlus title={"Sekcije"} onAdd={() => {
+        <TitleWithPlus title={"Partneri"} onAdd={() => {
         }}/>
 
-        <EditableGrid components={components} onEdit={() => {
-        }} onMove={moveComponent} gridBreakpoints={{xl: 3, lg: 4, md: 6, sm: 6, xs: 11}}/>
+        <EditableGrid components={components} onEdit={onEdit} onMove={moveComponent}
+                      gridBreakpoints={{xl: 3, lg: 4, md: 6, sm: 6, xs: 11}}/>
 
 
       </Box>

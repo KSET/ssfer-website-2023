@@ -9,12 +9,14 @@ interface Props {
   name: string;
   accept?: string;
   type?: string;
+  showImage?: boolean;
+  showName?: boolean;
 }
 
 const fileInputStyle = {
   display: "none"
 }
-export default function FormikImageUpload({label, name, accept, type}: Props) {
+export default function FormikImageUpload({label, name, accept, type, showImage, showName}: Props) {
   const {setFieldValue} = useFormikContext<FormikValues>();
   const [file, setFile] = React.useState<File | undefined>(undefined);
 
@@ -28,7 +30,10 @@ export default function FormikImageUpload({label, name, accept, type}: Props) {
                setFieldValue(name, event.currentTarget.files[0]);
              }}/>
       <Stack direction={"row"} justifyContent={"space-between"} alignItems={"center"} gap={"1rem"}>
-        {file && (
+        {file && !!showName && (
+          <Typography variant={"subtitle1"} color={"primary"}>{file.name}</Typography>
+        )}
+        {file && !!showImage && (
           <Box width={"200px"} height={"200px"} position={"relative"}>
             <Image src={URL.createObjectURL(file)} alt={file.name} fill={true} style={{objectFit: "contain"}}/>
           </Box>

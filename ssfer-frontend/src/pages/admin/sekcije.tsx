@@ -2,16 +2,9 @@ import {Box, useTheme} from "@mui/material";
 import {useState} from "react";
 import SekcijaCard from "@/components/sekcije/SekcijaCard";
 import {SekcijaEnum} from "@/components/sekcije/SekcijaEnum";
-import dynamic from "next/dynamic";
 import EditableGrid from "@/components/EditableGrid/EditableGrid";
 import TitleWithPlus from "@/components/admin/TitleWithPlus";
 import AdminLayout from "@/components/admin/AdminLayout";
-
-const repeat = (n: number, f: (i: number) => any) => Array.from({length: n}, (_, i) => f(i));
-
-const DraggingGrid = dynamic(() => import("@/components/DragAndDropGrid/DragAndDropGridV2"), {
-  ssr: false,
-});
 
 export default function Sekcije() {
   const theme = useTheme();
@@ -32,6 +25,10 @@ export default function Sekcije() {
     setComponents(newComponents);
   }
 
+  const onEdit = (index: number) => {
+    location.href = "uredivanje-sekcije/" + index;
+  }
+
   return (
     <>
       <AdminLayout>
@@ -39,8 +36,8 @@ export default function Sekcije() {
           <TitleWithPlus title={"Sekcije"} onAdd={() => {
           }}/>
 
-          <EditableGrid components={components} onEdit={() => {
-          }} onMove={moveComponent} gridBreakpoints={{xl: 3, lg: 4, md: 6, xs: 11}}/>
+          <EditableGrid components={components} onEdit={onEdit} onMove={moveComponent}
+                        gridBreakpoints={{xl: 3, lg: 4, md: 6, xs: 11}}/>
 
 
         </Box>

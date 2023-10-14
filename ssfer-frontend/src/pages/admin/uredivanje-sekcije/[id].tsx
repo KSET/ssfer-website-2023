@@ -17,10 +17,10 @@ const UredivanjeSekcije = () => {
   const {id} = router.query;
 
   const onSubmitOsnovne = async (values: any) => {
-    return true;
+    return;
   }
 
-  const {autosaveSubmit: onAutosaveOsnoveSubmit} = useAutosaveSubmit(onSubmitOsnovne)
+  const onAutosaveOsnoveSubmit = useAutosaveSubmit(onSubmitOsnovne)
 
   return (
     <AdminLayout>
@@ -75,7 +75,8 @@ const UredivanjeSekcije = () => {
                   </Grid>
                 </Grid>
 
-                <Typography variant={"subtitle1"} color={"primary"} mt={"1rem"}>Društvene mreže</Typography>
+                <Typography variant={"subtitle1"} color={"primary"} mt={"1rem"} fontWeight={"bold"}>Društvene
+                  mreže</Typography>
                 <Stack direction={"column"}>
                   <FormikLabelAndInput label={"Facebook"} name={"facebook"} type={"text"}/>
                   <FormikLabelAndInput label={"Instagram"} name={"instagram"} type={"text"}/>

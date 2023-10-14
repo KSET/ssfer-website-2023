@@ -19,6 +19,7 @@ const FormikLabelAndSwitch = ({label, name, type}: Props) => (
       id={name}
       name={name}
       type={type ?? "checkbox"}
+      disabled={false}
     />
   </Stack>
 )
