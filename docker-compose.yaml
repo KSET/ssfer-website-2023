@@ -5,6 +5,4 @@ services:
     build: ./ssfer-frontend
     ports:
       - "3000:3000"
-    volumes:
-      - ./ssfer-frontend:/app
-    command: yarn start
+

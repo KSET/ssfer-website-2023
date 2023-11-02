@@ -1,7 +1,15 @@
 
-FROM node:18.18.2-buster
+FROM node:20.9-buster-slim
+
 WORKDIR /app
-COPY . .
-RUN rm -rf .next node_modules
-RUN yarn install --frozen-lockfile
-CMD ["yarn", "build"]
+
+COPY package.json yarn.lock ./
+COPY tsconfig.json ./
+COPY next.config.js ./
+COPY .eslintrc.json ./
+COPY public ./public
+COPY src ./src
+
+RUN yarn
+RUN yarn build
+CMD ["yarn", "start"]
