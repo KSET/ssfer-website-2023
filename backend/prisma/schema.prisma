@@ -1,0 +1,22 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model sections {
+  name String @id
+  description String?
+  logo String?
+  photo String?
+  visible_on_page Boolean @default(true)
+  leader_name_surname String?
+  leader_email String?
+  leader_description String?
+  leader_photo String?
+  facebook_link String?
+  instagram_link String?
+  website_link String?
+}
