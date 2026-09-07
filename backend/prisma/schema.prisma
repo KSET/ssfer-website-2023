@@ -25,11 +25,11 @@ model basic_info {
   name String @id
   name_short String?
   hq String?
-  OIB String?
-  VAT_number String?
-  IBAN String?
+  oib String?
+  vat_number String?
+  iban String?
   bank String?
-  SWIFT String?
+  swift String?
 }
 
 model contact_addresses {
