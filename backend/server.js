@@ -44,10 +44,10 @@ app.get("/sections", async (req, res) => {
     }
 });
 
-app.get("/sections/:name", async (req, res) => {
+app.get("/section/:name", async (req, res) => {
     const { name } = req.params;
     const section = await prisma.sections.findUnique({
-        where: { name },
+        where: { name: name },
     });
 
     if (!section) {
@@ -60,25 +60,64 @@ app.get("/sections/:name", async (req, res) => {
     res.status(200).json(section);
 });
 
-app.post("/sections", async (req, res) => {
-    // if (req.user.role !== "admin") {
-    //     return res.status(403).json({
-    //         status: "Error",
-    //         message:
-    //             "Forbidden: You do not have permission to create a section",
-    //     });
-    // }
-
+app.post("/section", async (req, res) => {
     try {
-        const newSection = await prisma.sections.create({
-            data: req.body,
+        const body = req.body;
+
+        const created = await prisma.sections.create({
+            data: {
+                name: body.name,
+                description: body.description ?? null,
+                logo: body.logo ?? null,
+                photo: body.photo ?? null,
+                visible_on_page: body.visible_on_page ?? true,
+                leader_name_surname: body.leader_name_surname ?? null,
+                leader_email: body.leader_email ?? null,
+                leader_description: body.leader_description ?? null,
+                leader_photo: body.leader_photo ?? null,
+                facebook_link: body.facebook_link ?? null,
+                instagram_link: body.instagram_link ?? null,
+                website_link: body.website_link ?? null,
+            },
         });
-        res.status(201).json(newSection);
+
+        res.status(201).json(created);
     } catch (error) {
-        console.error("Error occurred while creating section:", error);
         res.status(500).json({
             status: "Error",
             message: "Failed to create section",
+        });
+    }
+});
+
+app.post("/section/:name", async (req, res) => {
+    try {
+        const sectionName = req.params.name;
+        const body = req.body;
+
+        const updated = await prisma.sections.update({
+            where: { name: sectionName },
+            data: {
+                name: body.name,
+                description: body.description ?? null,
+                logo: body.logo ?? null,
+                photo: body.photo ?? null,
+                visible_on_page: body.visible_on_page ?? true,
+                leader_name_surname: body.leader_name_surname ?? null,
+                leader_email: body.leader_email ?? null,
+                leader_description: body.leader_description ?? null,
+                leader_photo: body.leader_photo ?? null,
+                facebook_link: body.facebook_link ?? null,
+                instagram_link: body.instagram_link ?? null,
+                website_link: body.website_link ?? null,
+            },
+        });
+
+        res.json(updated);
+    } catch (error) {
+        res.status(500).json({
+            status: "Error",
+            message: "Failed to update section",
         });
     }
 });

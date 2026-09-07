@@ -20,3 +20,64 @@ model sections {
   instagram_link String?
   website_link String?
 }
+
+model basic_info {
+  name String @id
+  name_short String?
+  hq String?
+  OIB String?
+  VAT_number String?
+  IBAN String?
+  bank String?
+  SWIFT String?
+}
+
+model contact_addresses {
+  info String @id
+  program String?
+  media String?
+  legal String?
+  membership String?
+}
+
+model leadership {
+  role String @id
+  name String?
+  email String?
+}
+
+model project {
+  name String @id
+  photo String?
+  visible_on_page Boolean @default(true)
+  main_page_visible Boolean @default(false)
+  description String?
+  coorganizers String?
+  facebook_link String?
+  instagram_link String?
+  website_link String?
+}
+
+model partner {
+  name String @id
+  logo String?
+  visible_on_page Boolean @default(true)
+  strategic_partner Boolean @default(false)
+  website_link String?
+}
+
+model document {
+  name String @id
+  photo String?
+  visible_on_page Boolean @default(true)
+  file String?
+}
+
+model privacy_policy {
+  policy String @id
+}
+
+model user {
+  kset_email String @id
+  name_surname String?
+}

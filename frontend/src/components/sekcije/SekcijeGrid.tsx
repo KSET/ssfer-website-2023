@@ -5,21 +5,6 @@ import { SekcijaEnum } from "@/components/sekcije/SekcijaEnum";
 const repeat = (n: number, f: (i: number) => any) =>
     Array.from({ length: n }, (_, i) => f(i));
 
-type Section = {
-    name: string;
-    description?: string;
-    logo?: string;
-    photo?: string;
-    visible_on_page?: boolean;
-    leader_name_surname?: string;
-    leader_email?: string;
-    leader_description?: string;
-    leader_photo?: string;
-    facebook_link?: string;
-    instagram_link?: string;
-    website_link?: string;
-};
-
 export default function SekcijeGrid({ sx }: { sx?: SxProps<Theme> }) {
     return (
         <Box sx={sx}>
