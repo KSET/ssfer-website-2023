@@ -1,10 +1,8 @@
 import { useRouter } from "next/router";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import AdminLayout from "@/components/admin/AdminLayout";
 import { Box, Button, Divider, Grid, Stack, Typography } from "@mui/material";
 import { Field, Form, Formik } from "formik";
-import useAutosaveSubmit from "@/hooks/useAutosaveSubmit";
-import AutoSave from "@/components/admin/AutoSave";
 import FormikLabelAndInput from "@/components/admin/FormikLabelAndInput";
 import FormikImageUpload from "@/components/admin/FormikImageUpload";
 import FormikLabelAndCheckbox from "@/components/admin/DodavanjeKorisnika/FormikLabelAndCheckbox";
@@ -15,6 +13,7 @@ import DeleteIcon from "@mui/icons-material/Delete";
 const UredivanjeSekcije = () => {
     const router = useRouter();
     const { id } = router.query;
+    const [currentSection, setCurrentSection] = useState<any>(null);
 
     const onSubmitOsnovne = async (values: any) => {
         const payload = {
@@ -34,14 +33,38 @@ const UredivanjeSekcije = () => {
         };
 
         const sectionId = String(id);
-        const res = await fetch("http://localhost:4000/section", {
+        const res = await fetch(`http://localhost:4000/section/${sectionId}`, {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(payload),
         });
     };
 
-    const onAutosaveOsnoveSubmit = useAutosaveSubmit(onSubmitOsnovne);
+    useEffect(() => {
+        if (!id) return;
+
+        fetch(`http://localhost:4000/section/${id}`)
+            .then((res) => {
+                if (!res.ok) throw new Error("Failed to fetch section");
+                return res.json();
+            })
+            .then(setCurrentSection)
+            .catch(console.error);
+    }, [id]);
+
+    const onDelete = async () => {
+        const sectionId = String(id);
+        const res = await fetch(`http://localhost:4000/section/${sectionId}`, {
+            method: "DELETE",
+        });
+        if (res.ok) {
+            router.push("/admin/sekcije");
+        }
+    };
+
+    if (!currentSection) return null;
+
+    const leaderName = currentSection.leader_name_surname ?? "";
 
     return (
         <AdminLayout>
@@ -50,20 +73,20 @@ const UredivanjeSekcije = () => {
             </Typography>
             <Formik
                 initialValues={{
-                    imeSekcije: "",
-                    fotografija: undefined,
-                    logotip: undefined,
-                    vidljivo: false,
-                    opisSekcije: "",
-                    voditeljSekcijeFoto: undefined,
-                    voditeljSekcijeIme: "",
-                    voditeljSekcijePrezime: "",
-                    voditeljSekcijeOpis: "",
-                    facebook: "",
-                    instagram: "",
-                    web: "",
+                    imeSekcije: currentSection.name || "",
+                    fotografija: currentSection.photo || undefined,
+                    logotip: currentSection.logo || undefined,
+                    vidljivo: currentSection.visible_on_page || false,
+                    opisSekcije: currentSection.description || "",
+                    voditeljSekcijeFoto: currentSection.leader_photo || undefined,
+                    voditeljSekcijeIme: leaderName.split(" ")[0] || "",
+                    voditeljSekcijePrezime: leaderName.split(" ")[1] || "",
+                    voditeljSekcijeOpis: currentSection.leader_description || "",
+                    facebook: currentSection.facebook_link || "",
+                    instagram: currentSection.instagram_link || "",
+                    web: currentSection.website_link || "",
                 }}
-                onSubmit={onAutosaveOsnoveSubmit}
+                onSubmit={onSubmitOsnovne}
             >
                 {({ submitForm }) => (
                     <Form>
@@ -186,12 +209,16 @@ const UredivanjeSekcije = () => {
                                 >
                                     Spremi
                                 </Button>
-                                <Button variant={"outlined"} color={"primary"}>
+                                <Button
+                                    type="button"
+                                    variant={"outlined"}
+                                    color={"primary"}
+                                    onClick={onDelete}
+                                >
                                     <DeleteIcon />
                                 </Button>
                             </Stack>
                         </Stack>
-                        <AutoSave onSubmit={submitForm} />
                     </Form>
                 )}
             </Formik>

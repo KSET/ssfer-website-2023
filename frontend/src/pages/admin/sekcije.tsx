@@ -1,50 +1,52 @@
-import {Box, useTheme} from "@mui/material";
-import {useState} from "react";
+import { Box } from "@mui/material";
+import { GetServerSideProps } from "next";
+import { useState } from "react";
 import SekcijaCard from "@/components/sekcije/SekcijaCard";
-import {SekcijaEnum} from "@/components/sekcije/SekcijaEnum";
 import EditableGrid from "@/components/EditableGrid/EditableGrid";
 import TitleWithPlus from "@/components/admin/TitleWithPlus";
 import AdminLayout from "@/components/admin/AdminLayout";
 
-export default function Sekcije() {
-  const theme = useTheme();
+type Section = {
+    name: string;
+    photo: string | null;
+    logo: string | null;
+};
 
-  const [components, setComponents] = useState([
-    <SekcijaCard key={1} sekcija={SekcijaEnum.COMP}/>,
-    <SekcijaCard key={2} sekcija={SekcijaEnum.DISCO}/>,
-    <SekcijaCard key={3} sekcija={SekcijaEnum.BIKE}/>,
-    <SekcijaCard key={4} sekcija={SekcijaEnum.COMP}/>,
-    <SekcijaCard key={5} sekcija={SekcijaEnum.DISCO}/>,
-    <SekcijaCard key={6} sekcija={SekcijaEnum.BIKE}/>,
-    <SekcijaCard key={7} sekcija={SekcijaEnum.COMP}/>,
-  ]);
+export const getServerSideProps: GetServerSideProps<{ sections: Section[] }> = async () => {
+    const response = await fetch("http://localhost:4000/sections");
+    const sections = await response.json();
+    return { props: { sections } };
+};
 
-  const moveComponent = (from: number, to: number) => {
-    const newComponents = [...components];
-    newComponents.splice(to, 0, newComponents.splice(from, 1)[0]);
-    setComponents(newComponents);
-  }
+export default function Sekcije({ sections: initialSections }: { sections: Section[] }) {
+    const [sections, setSections] = useState(initialSections);
 
-  const onEdit = (index: number) => {
-    location.href = "uredivanje-sekcije/" + index;
-  }
+    const moveComponent = (from: number, to: number) => {
+        const newSections = [...sections];
+        newSections.splice(to, 0, newSections.splice(from, 1)[0]);
+        setSections(newSections);
+    };
 
-  return (
-    <>
-      <AdminLayout>
-        <Box m={"2rem"}>
-          <TitleWithPlus title={"Sekcije"} onAdd={() => {
-          }}/>
+    const onEdit = (index: number) => {
+        location.href = "uredivanje-sekcije/" + encodeURIComponent(sections[index].name);
+    };
 
-          <EditableGrid components={components} onEdit={onEdit} onMove={moveComponent}
-                        gridBreakpoints={{xl: 3, lg: 4, md: 6, xs: 11}}/>
+    return (
+        <>
+            <AdminLayout>
+                <Box m={"2rem"}>
+                    <TitleWithPlus title={"Sekcije"} onAdd={() => {}} />
 
-
-        </Box>
-      </AdminLayout>
-
-    </>
-  )
+                    <EditableGrid
+                        components={sections.map((section) => (
+                            <SekcijaCard key={section.name} section={section} />
+                        ))}
+                        onEdit={onEdit}
+                        onMove={moveComponent}
+                        gridBreakpoints={{ xl: 3, lg: 4, md: 6, xs: 11 }}
+                    />
+                </Box>
+            </AdminLayout>
+        </>
+    );
 }
-
-

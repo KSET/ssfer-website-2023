@@ -324,3 +324,43 @@ app.post("/section/:name", async (req, res) => {
         });
     }
 });
+
+app.get("/contacts", async (req, res) => {
+    try {
+        const contactPages = await prisma.basic_info.findFirst();
+        const contactAddresses = await prisma.contact_addresses.findFirst();
+        const leadership = await prisma.leadership.findMany();
+
+        res.status(200).json({
+            contactPages,
+            contactAddresses,
+            leadership,
+        });
+    } catch (error) {
+        console.error("Error occurred while fetching contact pages:", error);
+        res.status(500).json({
+            status: "Error",
+            message: "Failed to fetch contact pages",
+        });
+    }
+});
+
+app.delete("/section/:name", async (req, res) => {
+    const { name } = req.params;
+    try {
+        const deletedSection = await prisma.sections.delete({
+            where: { name: name },
+        });
+        res.status(200).json({
+            status: "OK",
+            message: `Section with name ${name} deleted successfully`,
+            deletedSection,
+        });
+    } catch (error) {
+        console.error(`Error occurred while deleting section with name ${name}:`, error);
+        res.status(500).json({
+            status: "Error",
+            message: `Failed to delete section with name ${name}`,
+        });
+    }
+});
