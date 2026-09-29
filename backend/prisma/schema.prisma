@@ -1,0 +1,83 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model Sekcija {
+  naziv String @id
+  opis String?
+  logotip String?
+  fotografija String?
+  vidljivo_na_stranici Boolean @default(true)
+  ime_prezime_voditelja String?
+  email_voditelja String?
+  opis_voditelja String?
+  fotografija_voditelja String?
+  facebook_poveznica String?
+  instagram_poveznica String?
+  web_poveznica String?
+}
+
+model OsnovneInformacije {
+  naziv String @id
+  skraceni_naziv String?
+  sjediste String?
+  oib String?
+  pdv_broj String?
+  iban String?
+  banka String?
+  swift String?
+}
+
+model KontaktAdrese {
+  informacije String @id
+  program String?
+  mediji String?
+  pravno String?
+  clanstvo String?
+}
+
+model Vodstvo {
+  uloga String @id
+  ime String?
+  email String?
+}
+
+model Projekt {
+  naziv String @id
+  fotografija String?
+  vidljivo_na_stranici Boolean @default(true)
+  vidljivo_na_naslovnici Boolean @default(false)
+  opis String?
+  suorganizatori String?
+  facebook_poveznica String?
+  instagram_poveznica String?
+  web_poveznica String?
+}
+
+model Partner {
+  naziv String @id
+  logotip String?
+  vidljivo_na_stranici Boolean @default(true)
+  strateski_partner Boolean @default(false)
+  web_poveznica String?
+}
+
+model Dokument {
+  naziv String @id
+  fotografija String?
+  vidljivo_na_stranici Boolean @default(true)
+  datoteka String?
+}
+
+model PolitikaPrivatnosti {
+  tekst String @id
+}
+
+model Korisnik {
+  kset_email String @id
+  ime_prezime String?
+}
