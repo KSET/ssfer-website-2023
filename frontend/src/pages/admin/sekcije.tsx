@@ -7,28 +7,28 @@ import TitleWithPlus from "@/components/admin/TitleWithPlus";
 import AdminLayout from "@/components/admin/AdminLayout";
 
 type Section = {
-    name: string;
-    photo: string | null;
-    logo: string | null;
+    naziv: string;
+    fotografija: string | null;
+    logotip: string | null;
 };
 
-export const getServerSideProps: GetServerSideProps<{ sections: Section[] }> = async () => {
+export const getServerSideProps: GetServerSideProps<{ sekcije: Section[] }> = async () => {
     const response = await fetch("http://localhost:4000/sections");
-    const sections = await response.json();
-    return { props: { sections } };
+    const sekcije = await response.json();
+    return { props: { sekcije } };
 };
 
-export default function Sekcije({ sections: initialSections }: { sections: Section[] }) {
-    const [sections, setSections] = useState(initialSections);
+export default function Sekcije({ sekcije: pocetneSekcije }: { sekcije: Section[] }) {
+    const [sekcije, setSekcije] = useState(pocetneSekcije);
 
     const moveComponent = (from: number, to: number) => {
-        const newSections = [...sections];
-        newSections.splice(to, 0, newSections.splice(from, 1)[0]);
-        setSections(newSections);
+        const noveSekcije = [...sekcije];
+        noveSekcije.splice(to, 0, noveSekcije.splice(from, 1)[0]);
+        setSekcije(noveSekcije);
     };
 
     const onEdit = (index: number) => {
-        location.href = "uredivanje-sekcije/" + encodeURIComponent(sections[index].name);
+        location.href = "uredivanje-sekcije/" + encodeURIComponent(sekcije[index].naziv);
     };
 
     return (
@@ -38,8 +38,8 @@ export default function Sekcije({ sections: initialSections }: { sections: Secti
                     <TitleWithPlus title={"Sekcije"} onAdd={() => {}} />
 
                     <EditableGrid
-                        components={sections.map((section) => (
-                            <SekcijaCard key={section.name} section={section} />
+                        components={sekcije.map((sekcija) => (
+                            <SekcijaCard key={sekcija.naziv} section={sekcija} />
                         ))}
                         onEdit={onEdit}
                         onMove={moveComponent}

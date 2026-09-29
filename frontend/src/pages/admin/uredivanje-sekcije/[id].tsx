@@ -17,19 +17,19 @@ const UredivanjeSekcije = () => {
 
     const onSubmitOsnovne = async (values: any) => {
         const payload = {
-            name: values.imeSekcije,
-            photo: values.fotografija ?? null,
-            logo: values.logotip ?? null,
-            visible_on_page: values.vidljivo,
-            description: values.opisSekcije ?? null,
-            leader_photo: values.voditeljSekcijeFoto ?? null,
-            leader_name_surname:
+            naziv: values.imeSekcije,
+            fotografija: values.fotografija ?? null,
+            logotip: values.logotip ?? null,
+            vidljivo_na_stranici: values.vidljivo,
+            opis: values.opisSekcije ?? null,
+            fotografija_voditelja: values.voditeljSekcijeFoto ?? null,
+            ime_prezime_voditelja:
                 (values.voditeljSekcijeIme + " " + values.voditeljSekcijePrezime).trim() || null,
-            leader_email: values.voditeljSekcijeEmail ?? null,
-            leader_description: values.voditeljSekcijeOpis ?? null,
-            facebook_link: values.facebook ?? null,
-            instagram_link: values.instagram ?? null,
-            website_link: values.web ?? null,
+            email_voditelja: values.voditeljSekcijeEmail ?? null,
+            opis_voditelja: values.voditeljSekcijeOpis ?? null,
+            facebook_poveznica: values.facebook ?? null,
+            instagram_poveznica: values.instagram ?? null,
+            web_poveznica: values.web ?? null,
         };
 
         const sectionId = String(id);
@@ -64,7 +64,7 @@ const UredivanjeSekcije = () => {
 
     if (!currentSection) return null;
 
-    const leaderName = currentSection.leader_name_surname ?? "";
+    const leaderName = currentSection.ime_prezime_voditelja ?? "";
 
     return (
         <AdminLayout>
@@ -73,18 +73,18 @@ const UredivanjeSekcije = () => {
             </Typography>
             <Formik
                 initialValues={{
-                    imeSekcije: currentSection.name || "",
-                    fotografija: currentSection.photo || undefined,
-                    logotip: currentSection.logo || undefined,
-                    vidljivo: currentSection.visible_on_page || false,
-                    opisSekcije: currentSection.description || "",
-                    voditeljSekcijeFoto: currentSection.leader_photo || undefined,
+                    imeSekcije: currentSection.naziv || "",
+                    fotografija: currentSection.fotografija || undefined,
+                    logotip: currentSection.logotip || undefined,
+                    vidljivo: currentSection.vidljivo_na_stranici || false,
+                    opisSekcije: currentSection.opis || "",
+                    voditeljSekcijeFoto: currentSection.fotografija_voditelja || undefined,
                     voditeljSekcijeIme: leaderName.split(" ")[0] || "",
                     voditeljSekcijePrezime: leaderName.split(" ")[1] || "",
-                    voditeljSekcijeOpis: currentSection.leader_description || "",
-                    facebook: currentSection.facebook_link || "",
-                    instagram: currentSection.instagram_link || "",
-                    web: currentSection.website_link || "",
+                    voditeljSekcijeOpis: currentSection.opis_voditelja || "",
+                    facebook: currentSection.facebook_poveznica || "",
+                    instagram: currentSection.instagram_poveznica || "",
+                    web: currentSection.web_poveznica || "",
                 }}
                 onSubmit={onSubmitOsnovne}
             >

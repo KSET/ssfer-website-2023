@@ -30,6 +30,15 @@ yarn-error.log*
 # local env files
 .env*.local
 
+# Agent configuration and generated agent workspaces
+**/.agents/
+**/.claude/
+**/.windsurf/
+**/AGENTS.md
+**/*.agent.md
+**/*.instructions.md
+**/*.prompt.md
+
 # vercel
 .vercel
 

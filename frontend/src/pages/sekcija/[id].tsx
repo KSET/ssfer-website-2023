@@ -35,18 +35,18 @@ const IMAGE_HEIGHT_MD = 45 * DEFAULT_IMAGE_HEIGHT_RATIO;
 const IMAGE_HEIGHT_LG = 80 * DEFAULT_IMAGE_HEIGHT_RATIO;
 
 type Section = {
-    name: string;
-    description?: string;
-    logo?: string;
-    photo?: string;
-    visible_on_page?: boolean;
-    leader_name_surname?: string;
-    leader_email?: string;
-    leader_description?: string;
-    leader_photo?: string;
-    facebook_link?: string;
-    instagram_link?: string;
-    website_link?: string;
+    naziv: string;
+    opis?: string;
+    logotip?: string;
+    fotografija?: string;
+    vidljivo_na_stranici?: boolean;
+    ime_prezime_voditelja?: string;
+    email_voditelja?: string;
+    opis_voditelja?: string;
+    fotografija_voditelja?: string;
+    facebook_poveznica?: string;
+    instagram_poveznica?: string;
+    web_poveznica?: string;
 };
 
 export default function Sekcija() {
@@ -73,7 +73,7 @@ export default function Sekcija() {
 
             <Box sx={{ mx: { xs: "1rem", md: "8rem" }, mt: "2rem", mb: "8rem" }}>
                 <Typography variant={"h4"} sx={{ fontWeight: "bold", mt: "2rem" }}>
-                    {section?.name}
+                    {section?.naziv}
                 </Typography>
 
                 <Box
@@ -97,11 +97,11 @@ export default function Sekcija() {
                 </Box>
 
                 <Typography variant={"body1"} sx={{ mt: "2rem" }}>
-                    {section?.description}
+                    {section?.opis}
                 </Typography>
 
                 <Typography variant={"h5"} sx={{ mt: "2rem", fontWeight: "bold" }}>
-                    {section?.leader_name_surname}
+                    {section?.ime_prezime_voditelja}
                 </Typography>
 
                 <Box
@@ -133,19 +133,19 @@ export default function Sekcija() {
                         width={"100%"}
                     >
                         <Typography variant={"h5"} sx={{ fontWeight: "bold" }}>
-                            {section?.leader_name_surname}
+                            {section?.ime_prezime_voditelja}
                         </Typography>
                         <Typography variant={"body1"} sx={{ display: { xs: "none", md: "block" } }}>
-                            {section?.leader_description}
+                            {section?.opis_voditelja}
                         </Typography>
-                        <Typography variant={"body2"}>{section?.leader_email}</Typography>
+                        <Typography variant={"body2"}>{section?.email_voditelja}</Typography>
                     </Stack>
                 </Box>
                 <Typography
                     variant={"body1"}
                     sx={{ mt: "1rem", display: { xs: "block", md: "none" } }}
                 >
-                    {section?.leader_description}
+                    {section?.opis_voditelja}
                 </Typography>
 
                 <DrustveneMreze networks={DEFAULT_SOCIALS} sx={{ mt: "2rem" }} />

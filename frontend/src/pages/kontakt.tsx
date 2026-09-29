@@ -5,34 +5,34 @@ import { GetServerSideProps } from "next";
 import React from "react";
 
 type BasicInfo = {
-    name: string;
-    name_short: string | null;
-    hq: string | null;
+    naziv: string;
+    skraceni_naziv: string | null;
+    sjediste: string | null;
     oib: string | null;
-    vat_number: string | null;
+    pdv_broj: string | null;
     iban: string | null;
-    bank: string | null;
+    banka: string | null;
     swift: string | null;
 };
 
 type ContactAddresses = {
-    info: string;
+    informacije: string;
     program: string | null;
-    media: string | null;
-    legal: string | null;
-    membership: string | null;
+    mediji: string | null;
+    pravno: string | null;
+    clanstvo: string | null;
 };
 
 type Leadership = {
-    role: string;
-    name: string | null;
+    uloga: string;
+    ime: string | null;
     email: string | null;
 };
 
 type KontaktProps = {
-    basic_info: BasicInfo | null;
-    contact_addresses: ContactAddresses | null;
-    leadership: Leadership[];
+    osnovneInformacije: BasicInfo | null;
+    kontaktAdrese: ContactAddresses | null;
+    vodstvo: Leadership[];
 };
 
 export const getServerSideProps: GetServerSideProps<KontaktProps> = async () => {
@@ -41,34 +41,34 @@ export const getServerSideProps: GetServerSideProps<KontaktProps> = async () => 
 
     return {
         props: {
-            basic_info: data.contactPages ?? null,
-            contact_addresses: data.contactAddresses ?? null,
-            leadership: data.leadership,
+            osnovneInformacije: data.osnovneInformacije ?? null,
+            kontaktAdrese: data.kontaktAdrese ?? null,
+            vodstvo: data.vodstvo,
         },
     };
 };
 
-export default function Kontakt({ basic_info, contact_addresses, leadership }: KontaktProps) {
-    const osnovneInformacije = basic_info
+export default function Kontakt({ osnovneInformacije, kontaktAdrese, vodstvo }: KontaktProps) {
+    const prikazOsnovnihInformacija = osnovneInformacije
         ? [
-              { key: "Ime udruge", value: basic_info.name },
-              { key: "Skraćeni naziv udruge", value: basic_info.name_short },
-              { key: "Sjedište udruge", value: basic_info.hq },
-              { key: "OIB", value: basic_info.oib },
-              { key: "VAT", value: basic_info.vat_number },
-              { key: "IBAN", value: basic_info.iban },
-              { key: "Banka", value: basic_info.bank },
-              { key: "SWIFT", value: basic_info.swift },
+              { key: "Ime udruge", value: osnovneInformacije.naziv },
+              { key: "Skraćeni naziv udruge", value: osnovneInformacije.skraceni_naziv },
+              { key: "Sjedište udruge", value: osnovneInformacije.sjediste },
+              { key: "OIB", value: osnovneInformacije.oib },
+              { key: "PDV", value: osnovneInformacije.pdv_broj },
+              { key: "IBAN", value: osnovneInformacije.iban },
+              { key: "Banka", value: osnovneInformacije.banka },
+              { key: "SWIFT", value: osnovneInformacije.swift },
           ]
         : [];
 
-    const kontaktAdresa = contact_addresses
+    const prikazKontaktAdrese = kontaktAdrese
         ? [
-              { key: "Info", value: contact_addresses.info },
-              { key: "Program", value: contact_addresses.program },
-              { key: "Mediji", value: contact_addresses.media },
-              { key: "Pravno", value: contact_addresses.legal },
-              { key: "Članstvo", value: contact_addresses.membership },
+              { key: "Informacije", value: kontaktAdrese.informacije },
+              { key: "Program", value: kontaktAdrese.program },
+              { key: "Mediji", value: kontaktAdrese.mediji },
+              { key: "Pravno", value: kontaktAdrese.pravno },
+              { key: "Članstvo", value: kontaktAdrese.clanstvo },
           ]
         : [];
 
@@ -86,7 +86,7 @@ export default function Kontakt({ basic_info, contact_addresses, leadership }: K
                 </Typography>
 
                 <Grid container rowSpacing={"0.5rem"} sx={{ mt: "1rem" }} alignItems={"center"}>
-                    {osnovneInformacije.map((info) => (
+                    {prikazOsnovnihInformacija.map((info) => (
                         <React.Fragment key={info.key}>
                             <Grid item xs={12} md={3} lg={2}>
                                 <Typography
@@ -108,7 +108,7 @@ export default function Kontakt({ basic_info, contact_addresses, leadership }: K
                 </Typography>
 
                 <Grid container rowSpacing={"0.5rem"} sx={{ mt: "1rem" }} alignItems={"center"}>
-                    {kontaktAdresa.map((info) => (
+                    {prikazKontaktAdrese.map((info) => (
                         <React.Fragment key={info.key}>
                             <Grid item xs={12} md={3} lg={2}>
                                 <Typography
@@ -130,18 +130,18 @@ export default function Kontakt({ basic_info, contact_addresses, leadership }: K
                 </Typography>
 
                 <Grid container rowSpacing={"0.5rem"} sx={{ mt: "1rem" }} alignItems={"center"}>
-                    {leadership.map((info) => (
-                        <React.Fragment key={info.role}>
+                    {vodstvo.map((info) => (
+                        <React.Fragment key={info.uloga}>
                             <Grid item xs={12} md={3} lg={2}>
                                 <Typography
                                     variant={"body1"}
                                     sx={{ fontWeight: { xs: "bold", md: "normal" } }}
                                 >
-                                    {info.role}
+                                    {info.uloga}
                                 </Typography>
                             </Grid>
                             <Grid item xs={12} md={3} lg={2}>
-                                <Typography variant={"body2"}>{info.name}</Typography>
+                                <Typography variant={"body2"}>{info.ime}</Typography>
                             </Grid>
                             <Grid item xs={12} md={6} lg={8}>
                                 <Typography variant={"body2"}>{info.email}</Typography>

@@ -5,9 +5,9 @@ import { SekcijaEnum } from "@/components/sekcije/SekcijaEnum";
 import { useState } from "react";
 
 type Section = {
-    name: string;
-    photo?: string | null;
-    logo?: string | null;
+    naziv: string;
+    fotografija?: string | null;
+    logotip?: string | null;
 };
 
 export default function SekcijaCard({
@@ -17,8 +17,9 @@ export default function SekcijaCard({
     sekcija?: SekcijaEnum;
     section?: Section;
 }) {
-    const name = section?.name ?? "Comp";
-    const image = section?.photo || section?.logo || (sekcija ? `/sekcije/${sekcija}.svg` : null);
+    const naziv = section?.naziv ?? "Comp";
+    const image =
+        section?.fotografija || section?.logotip || (sekcija ? `/sekcije/${sekcija}.svg` : null);
     const [imageError, setImageError] = useState(false);
 
     return (
@@ -36,20 +37,20 @@ export default function SekcijaCard({
                     width: "100%",
                 }}
             >
-                <Link href={`/sekcija/${encodeURIComponent(name)}`}>
+                <Link href={`/sekcija/${encodeURIComponent(naziv)}`}>
                     {image && !imageError ? (
-                        section?.photo || section?.logo ? (
+                        section?.fotografija || section?.logotip ? (
                             <Box
                                 component="img"
                                 src={image}
-                                alt={name}
+                                alt={naziv}
                                 onError={() => setImageError(true)}
                                 sx={{ width: "100%", height: "100%", objectFit: "contain" }}
                             />
                         ) : (
                             <Image
                                 src={image}
-                                alt={name}
+                                alt={naziv}
                                 fill={true}
                                 onError={() => setImageError(true)}
                             />
@@ -57,7 +58,7 @@ export default function SekcijaCard({
                     ) : (
                         <Stack height="100%" alignItems="center" justifyContent="center">
                             <Typography variant="h5" textAlign="center">
-                                {name}
+                                {naziv}
                             </Typography>
                         </Stack>
                     )}
@@ -72,7 +73,7 @@ export default function SekcijaCard({
                     textDecoration: "underline",
                 }}
             >
-                {name}
+                {naziv}
             </Typography>
         </Stack>
     );

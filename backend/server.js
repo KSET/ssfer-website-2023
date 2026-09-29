@@ -18,7 +18,7 @@ app.get("/health", async (req, res) => {
     console.log("Health status:");
 
     try {
-        const sectionCount = await prisma.sections.count();
+        const sectionCount = await prisma.sekcija.count();
         res.status(200).json({ status: "OK", sectionsCount: sectionCount });
     } catch (error) {
         console.error("Error occurred while checking health:", error);
@@ -31,163 +31,165 @@ app.get("/health", async (req, res) => {
 
 app.get("/populate", async (req, res) => {
     try {
-        await prisma.sections.upsert({
-            where: { name: "test_section" },
+        await prisma.sekcija.upsert({
+            where: { naziv: "test_section" },
             update: {
-                name: "test_section",
-                description: "lorem ipsum dolor sit amet",
-                logo: "https://example.com/logo.png",
-                photo: "https://example.com/photo.png",
-                visible_on_page: true,
-                leader_name_surname: "John Doe",
-                leader_email: "person@example.com",
-                leader_description: "lorem ipsum dolor sit amet",
-                leader_photo: "https://example.com/leader_photo.png",
-                facebook_link: "https://facebook.com/test_section",
-                instagram_link: "https://instagram.com/test_section",
-                website_link: "https://test_section.com",
+                naziv: "test_section",
+                opis: "lorem ipsum dolor sit amet",
+                logotip: "https://example.com/logo.png",
+                fotografija: "https://example.com/photo.png",
+                vidljivo_na_stranici: true,
+                ime_prezime_voditelja: "John Doe",
+                email_voditelja: "person@example.com",
+                opis_voditelja: "lorem ipsum dolor sit amet",
+                fotografija_voditelja: "https://example.com/leader_photo.png",
+                facebook_poveznica: "https://facebook.com/test_section",
+                instagram_poveznica: "https://instagram.com/test_section",
+                web_poveznica: "https://test_section.com",
             },
             create: {
-                name: "test_section",
-                description: "lorem ipsum dolor sit amet",
-                logo: "https://example.com/logo.png",
-                photo: "https://example.com/photo.png",
-                visible_on_page: true,
-                leader_name_surname: "John Doe",
-                leader_email: "person@example.com",
-                leader_description: "lorem ipsum dolor sit amet",
-                leader_photo: "https://example.com/leader_photo.png",
-                facebook_link: "https://facebook.com/test_section",
-                instagram_link: "https://instagram.com/test_section",
-                website_link: "https://test_section.com",
+                naziv: "test_section",
+                opis: "lorem ipsum dolor sit amet",
+                logotip: "https://example.com/logo.png",
+                fotografija: "https://example.com/photo.png",
+                vidljivo_na_stranici: true,
+                ime_prezime_voditelja: "John Doe",
+                email_voditelja: "person@example.com",
+                opis_voditelja: "lorem ipsum dolor sit amet",
+                fotografija_voditelja: "https://example.com/leader_photo.png",
+                facebook_poveznica: "https://facebook.com/test_section",
+                instagram_poveznica: "https://instagram.com/test_section",
+                web_poveznica: "https://test_section.com",
             },
         });
-        await prisma.basic_info.upsert({
-            where: { name: "test_basic_info" },
+        await prisma.osnovneInformacije.upsert({
+            where: { naziv: "test_basic_info" },
             update: {
-                name: "test_basic_info",
-                name_short: "test",
-                hq: "test_hq",
+                naziv: "test_basic_info",
+                skraceni_naziv: "test",
+                sjediste: "test_hq",
                 oib: "12345678901",
-                vat_number: "HR12345678901",
+                pdv_broj: "HR12345678901",
                 iban: "HR1234567890123456789",
+                banka: "Testna banka",
                 swift: "TESTHR12",
             },
             create: {
-                name: "test_basic_info",
-                name_short: "test",
-                hq: "test_hq",
+                naziv: "test_basic_info",
+                skraceni_naziv: "test",
+                sjediste: "test_hq",
                 oib: "12345678901",
-                vat_number: "HR12345678901",
+                pdv_broj: "HR12345678901",
                 iban: "HR1234567890123456789",
+                banka: "Testna banka",
                 swift: "TESTHR12",
             },
         });
-        await prisma.contact_addresses.upsert({
-            where: { info: "info@example.org" },
+        await prisma.kontaktAdrese.upsert({
+            where: { informacije: "info@example.org" },
             update: {
-                info: "info@example.org",
+                informacije: "info@example.org",
                 program: "program@example.org",
-                media: "media@example.org",
-                legal: "legal@example.org",
-                membership: "membership@example.org",
+                mediji: "media@example.org",
+                pravno: "legal@example.org",
+                clanstvo: "membership@example.org",
             },
             create: {
-                info: "info@example.org",
+                informacije: "info@example.org",
                 program: "program@example.org",
-                media: "media@example.org",
-                legal: "legal@example.org",
-                membership: "membership@example.org",
+                mediji: "media@example.org",
+                pravno: "legal@example.org",
+                clanstvo: "membership@example.org",
             },
         });
-        await prisma.leadership.upsert({
-            where: { role: "President" },
+        await prisma.vodstvo.upsert({
+            where: { uloga: "President" },
             update: {
-                role: "President",
-                name: "John Doe",
+                uloga: "President",
+                ime: "John Doe",
                 email: "john.doe@example.org",
             },
             create: {
-                role: "President",
-                name: "John Doe",
+                uloga: "President",
+                ime: "John Doe",
                 email: "john.doe@example.org",
             },
         });
-        await prisma.project.upsert({
-            where: { name: "test_project" },
+        await prisma.projekt.upsert({
+            where: { naziv: "test_project" },
             update: {
-                name: "test_project",
-                photo: "https://example.com/project_photo.png",
-                visible_on_page: true,
-                main_page_visible: true,
-                description: "lorem ipsum dolor sit amet",
-                coorganizers: "John Doe, Jane Smith",
-                facebook_link: "https://facebook.com/test_project",
-                instagram_link: "https://instagram.com/test_project",
-                website_link: "https://test_project.com",
+                naziv: "test_project",
+                fotografija: "https://example.com/project_photo.png",
+                vidljivo_na_stranici: true,
+                vidljivo_na_naslovnici: true,
+                opis: "lorem ipsum dolor sit amet",
+                suorganizatori: "John Doe, Jane Smith",
+                facebook_poveznica: "https://facebook.com/test_project",
+                instagram_poveznica: "https://instagram.com/test_project",
+                web_poveznica: "https://test_project.com",
             },
             create: {
-                name: "test_project",
-                photo: "https://example.com/project_photo.png",
-                visible_on_page: true,
-                main_page_visible: true,
-                description: "lorem ipsum dolor sit amet",
-                coorganizers: "John Doe, Jane Smith",
-                facebook_link: "https://facebook.com/test_project",
-                instagram_link: "https://instagram.com/test_project",
-                website_link: "https://test_project.com",
+                naziv: "test_project",
+                fotografija: "https://example.com/project_photo.png",
+                vidljivo_na_stranici: true,
+                vidljivo_na_naslovnici: true,
+                opis: "lorem ipsum dolor sit amet",
+                suorganizatori: "John Doe, Jane Smith",
+                facebook_poveznica: "https://facebook.com/test_project",
+                instagram_poveznica: "https://instagram.com/test_project",
+                web_poveznica: "https://test_project.com",
             },
         });
         await prisma.partner.upsert({
-            where: { name: "test_partner" },
+            where: { naziv: "test_partner" },
             update: {
-                name: "test_partner",
-                logo: "https://example.com/partner_logo.png",
-                visible_on_page: true,
-                strategic_partner: false,
-                website_link: "https://test_partner.com",
+                naziv: "test_partner",
+                logotip: "https://example.com/partner_logo.png",
+                vidljivo_na_stranici: true,
+                strateski_partner: false,
+                web_poveznica: "https://test_partner.com",
             },
             create: {
-                name: "test_partner",
-                logo: "https://example.com/partner_logo.png",
-                visible_on_page: true,
-                strategic_partner: false,
-                website_link: "https://test_partner.com",
+                naziv: "test_partner",
+                logotip: "https://example.com/partner_logo.png",
+                vidljivo_na_stranici: true,
+                strateski_partner: false,
+                web_poveznica: "https://test_partner.com",
             },
         });
-        await prisma.document.upsert({
-            where: { name: "test_document" },
+        await prisma.dokument.upsert({
+            where: { naziv: "test_document" },
             update: {
-                name: "test_document",
-                photo: "https://example.com/document_photo.png",
-                visible_on_page: true,
-                file: "https://example.com/document_file.pdf",
+                naziv: "test_document",
+                fotografija: "https://example.com/document_photo.png",
+                vidljivo_na_stranici: true,
+                datoteka: "https://example.com/document_file.pdf",
             },
             create: {
-                name: "test_document",
-                photo: "https://example.com/document_photo.png",
-                visible_on_page: true,
-                file: "https://example.com/document_file.pdf",
+                naziv: "test_document",
+                fotografija: "https://example.com/document_photo.png",
+                vidljivo_na_stranici: true,
+                datoteka: "https://example.com/document_file.pdf",
             },
         });
-        await prisma.privacy_policy.upsert({
-            where: { policy: "This is a test privacy policy." },
+        await prisma.politikaPrivatnosti.upsert({
+            where: { tekst: "This is a test privacy policy." },
             update: {
-                policy: "This is a test privacy policy.",
+                tekst: "This is a test privacy policy.",
             },
             create: {
-                policy: "This is a test privacy policy.",
+                tekst: "This is a test privacy policy.",
             },
         });
-        await prisma.user.upsert({
+        await prisma.korisnik.upsert({
             where: { kset_email: "test_user@example.org" },
             update: {
                 kset_email: "test_user@example.org",
-                name_surname: "Test User",
+                ime_prezime: "Test User",
             },
             create: {
                 kset_email: "test_user@example.org",
-                name_surname: "Test User",
+                ime_prezime: "Test User",
             },
         });
         res.status(200).json({ status: "OK", message: "Database populated" });
@@ -202,26 +204,26 @@ app.get("/populate", async (req, res) => {
 
 app.get("/getPopulated", async (req, res) => {
     try {
-        const sections = await prisma.sections.findMany();
-        const basicInfo = await prisma.basic_info.findMany();
-        const contactAddresses = await prisma.contact_addresses.findMany();
-        const leadership = await prisma.leadership.findMany();
-        const projects = await prisma.project.findMany();
-        const partners = await prisma.partner.findMany();
-        const documents = await prisma.document.findMany();
-        const privacyPolicies = await prisma.privacy_policy.findMany();
-        const users = await prisma.user.findMany();
+        const sekcije = await prisma.sekcija.findMany();
+        const osnovneInformacije = await prisma.osnovneInformacije.findMany();
+        const kontaktAdrese = await prisma.kontaktAdrese.findMany();
+        const vodstvo = await prisma.vodstvo.findMany();
+        const projekti = await prisma.projekt.findMany();
+        const partneri = await prisma.partner.findMany();
+        const dokumenti = await prisma.dokument.findMany();
+        const politikePrivatnosti = await prisma.politikaPrivatnosti.findMany();
+        const korisnici = await prisma.korisnik.findMany();
 
         res.status(200).json({
-            sections,
-            basicInfo,
-            contactAddresses,
-            leadership,
-            projects,
-            partners,
-            documents,
-            privacyPolicies,
-            users,
+            sekcije,
+            osnovneInformacije,
+            kontaktAdrese,
+            vodstvo,
+            projekti,
+            partneri,
+            dokumenti,
+            politikePrivatnosti,
+            korisnici,
         });
     } catch (error) {
         console.error("Error occurred while fetching populated data:", error);
@@ -236,8 +238,8 @@ app.get("/getPopulated", async (req, res) => {
 
 app.get("/sections", async (req, res) => {
     try {
-        const sections = await prisma.sections.findMany();
-        res.status(200).json(sections);
+        const sekcije = await prisma.Sekcija.findMany();
+        res.status(200).json(sekcije);
     } catch (error) {
         console.error("Error occurred while fetching sections:", error);
         res.status(500).json({
@@ -248,15 +250,15 @@ app.get("/sections", async (req, res) => {
 });
 
 app.get("/section/:name", async (req, res) => {
-    const { name } = req.params;
-    const section = await prisma.sections.findUnique({
-        where: { name: name },
+    const naziv = req.params.name;
+    const section = await prisma.sekcija.findUnique({
+        where: { naziv },
     });
 
     if (!section) {
         return res.status(404).json({
             status: "Error",
-            message: `Section with name ${name} not found`,
+            message: `Sekcija s nazivom ${naziv} nije pronađena`,
         });
     }
 
@@ -267,20 +269,20 @@ app.post("/section", async (req, res) => {
     try {
         const body = req.body;
 
-        const created = await prisma.sections.create({
+        const created = await prisma.sekcija.create({
             data: {
-                name: body.name,
-                description: body.description ?? null,
-                logo: body.logo ?? null,
-                photo: body.photo ?? null,
-                visible_on_page: body.visible_on_page ?? true,
-                leader_name_surname: body.leader_name_surname ?? null,
-                leader_email: body.leader_email ?? null,
-                leader_description: body.leader_description ?? null,
-                leader_photo: body.leader_photo ?? null,
-                facebook_link: body.facebook_link ?? null,
-                instagram_link: body.instagram_link ?? null,
-                website_link: body.website_link ?? null,
+                naziv: body.naziv,
+                opis: body.opis ?? null,
+                logotip: body.logotip ?? null,
+                fotografija: body.fotografija ?? null,
+                vidljivo_na_stranici: body.vidljivo_na_stranici ?? true,
+                ime_prezime_voditelja: body.ime_prezime_voditelja ?? null,
+                email_voditelja: body.email_voditelja ?? null,
+                opis_voditelja: body.opis_voditelja ?? null,
+                fotografija_voditelja: body.fotografija_voditelja ?? null,
+                facebook_poveznica: body.facebook_poveznica ?? null,
+                instagram_poveznica: body.instagram_poveznica ?? null,
+                web_poveznica: body.web_poveznica ?? null,
             },
         });
 
@@ -298,21 +300,21 @@ app.post("/section/:name", async (req, res) => {
         const sectionName = req.params.name;
         const body = req.body;
 
-        const updated = await prisma.sections.update({
-            where: { name: sectionName },
+        const updated = await prisma.sekcija.update({
+            where: { naziv: sectionName },
             data: {
-                name: body.name,
-                description: body.description ?? null,
-                logo: body.logo ?? null,
-                photo: body.photo ?? null,
-                visible_on_page: body.visible_on_page ?? true,
-                leader_name_surname: body.leader_name_surname ?? null,
-                leader_email: body.leader_email ?? null,
-                leader_description: body.leader_description ?? null,
-                leader_photo: body.leader_photo ?? null,
-                facebook_link: body.facebook_link ?? null,
-                instagram_link: body.instagram_link ?? null,
-                website_link: body.website_link ?? null,
+                naziv: body.naziv,
+                opis: body.opis ?? null,
+                logotip: body.logotip ?? null,
+                fotografija: body.fotografija ?? null,
+                vidljivo_na_stranici: body.vidljivo_na_stranici ?? true,
+                ime_prezime_voditelja: body.ime_prezime_voditelja ?? null,
+                email_voditelja: body.email_voditelja ?? null,
+                opis_voditelja: body.opis_voditelja ?? null,
+                fotografija_voditelja: body.fotografija_voditelja ?? null,
+                facebook_poveznica: body.facebook_poveznica ?? null,
+                instagram_poveznica: body.instagram_poveznica ?? null,
+                web_poveznica: body.web_poveznica ?? null,
             },
         });
 
@@ -327,14 +329,14 @@ app.post("/section/:name", async (req, res) => {
 
 app.get("/contacts", async (req, res) => {
     try {
-        const contactPages = await prisma.basic_info.findFirst();
-        const contactAddresses = await prisma.contact_addresses.findFirst();
-        const leadership = await prisma.leadership.findMany();
+        const osnovneInformacije = await prisma.osnovneInformacije.findFirst();
+        const kontaktAdrese = await prisma.kontaktAdrese.findFirst();
+        const vodstvo = await prisma.vodstvo.findMany();
 
         res.status(200).json({
-            contactPages,
-            contactAddresses,
-            leadership,
+            osnovneInformacije,
+            kontaktAdrese,
+            vodstvo,
         });
     } catch (error) {
         console.error("Error occurred while fetching contact pages:", error);
@@ -346,21 +348,21 @@ app.get("/contacts", async (req, res) => {
 });
 
 app.delete("/section/:name", async (req, res) => {
-    const { name } = req.params;
+    const naziv = req.params.name;
     try {
-        const deletedSection = await prisma.sections.delete({
-            where: { name: name },
+        const deletedSection = await prisma.sekcija.delete({
+            where: { naziv },
         });
         res.status(200).json({
             status: "OK",
-            message: `Section with name ${name} deleted successfully`,
+            message: `Sekcija s nazivom ${naziv} uspješno je obrisana`,
             deletedSection,
         });
     } catch (error) {
-        console.error(`Error occurred while deleting section with name ${name}:`, error);
+        console.error(`Error occurred while deleting section with name ${naziv}:`, error);
         res.status(500).json({
             status: "Error",
-            message: `Failed to delete section with name ${name}`,
+            message: `Brisanje sekcije s nazivom ${naziv} nije uspjelo`,
         });
     }
 });

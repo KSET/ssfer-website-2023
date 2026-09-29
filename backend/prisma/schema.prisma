@@ -6,78 +6,78 @@ datasource db {
   provider = "postgresql"
 }
 
-model sections {
-  name String @id
-  description String?
-  logo String?
-  photo String?
-  visible_on_page Boolean @default(true)
-  leader_name_surname String?
-  leader_email String?
-  leader_description String?
-  leader_photo String?
-  facebook_link String?
-  instagram_link String?
-  website_link String?
+model Sekcija {
+  naziv String @id
+  opis String?
+  logotip String?
+  fotografija String?
+  vidljivo_na_stranici Boolean @default(true)
+  ime_prezime_voditelja String?
+  email_voditelja String?
+  opis_voditelja String?
+  fotografija_voditelja String?
+  facebook_poveznica String?
+  instagram_poveznica String?
+  web_poveznica String?
 }
 
-model basic_info {
-  name String @id
-  name_short String?
-  hq String?
+model OsnovneInformacije {
+  naziv String @id
+  skraceni_naziv String?
+  sjediste String?
   oib String?
-  vat_number String?
+  pdv_broj String?
   iban String?
-  bank String?
+  banka String?
   swift String?
 }
 
-model contact_addresses {
-  info String @id
+model KontaktAdrese {
+  informacije String @id
   program String?
-  media String?
-  legal String?
-  membership String?
+  mediji String?
+  pravno String?
+  clanstvo String?
 }
 
-model leadership {
-  role String @id
-  name String?
+model Vodstvo {
+  uloga String @id
+  ime String?
   email String?
 }
 
-model project {
-  name String @id
-  photo String?
-  visible_on_page Boolean @default(true)
-  main_page_visible Boolean @default(false)
-  description String?
-  coorganizers String?
-  facebook_link String?
-  instagram_link String?
-  website_link String?
+model Projekt {
+  naziv String @id
+  fotografija String?
+  vidljivo_na_stranici Boolean @default(true)
+  vidljivo_na_naslovnici Boolean @default(false)
+  opis String?
+  suorganizatori String?
+  facebook_poveznica String?
+  instagram_poveznica String?
+  web_poveznica String?
 }
 
-model partner {
-  name String @id
-  logo String?
-  visible_on_page Boolean @default(true)
-  strategic_partner Boolean @default(false)
-  website_link String?
+model Partner {
+  naziv String @id
+  logotip String?
+  vidljivo_na_stranici Boolean @default(true)
+  strateski_partner Boolean @default(false)
+  web_poveznica String?
 }
 
-model document {
-  name String @id
-  photo String?
-  visible_on_page Boolean @default(true)
-  file String?
+model Dokument {
+  naziv String @id
+  fotografija String?
+  vidljivo_na_stranici Boolean @default(true)
+  datoteka String?
 }
 
-model privacy_policy {
-  policy String @id
+model PolitikaPrivatnosti {
+  tekst String @id
 }
 
-model user {
+model Korisnik {
   kset_email String @id
-  name_surname String?
+  ime_prezime String?
 }
